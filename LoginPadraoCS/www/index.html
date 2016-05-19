@@ -295,7 +295,11 @@
 
                                 <div class="table-thing widget uib_w_28 d-margins" data-uib="twitter%20bootstrap/input" data-ver="1">
                                     <label class="narrow-control" for="txtURLConfiguracoes"></label>
-                                    <input class="wide-control form-control default input-lg" type="text" placeholder="http://" id="txtURLConfiguracoes">
+                                    <input class="wide-control form-control default input-lg" type="text" placeholder="http://" id="txtURLConfiguracoes" list="urls">
+                                    <datalist id="urls">
+                                        <option value="http://192.168.1.6/ws/index.php">Servidor Compusoft</option>
+                                        <option value="http://ns1.compusoft-info.com.br:8989/ws/index.php">Servidor Aralco</option>
+                                    </datalist>
                                 </div>
 
                                 <button class="btn widget uib_w_30 d-margins btn-lg btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnSalvarConfiguracoes"><i class="glyphicon glyphicon-ok button-icon-left" data-position="left"></i>Salvar</button>

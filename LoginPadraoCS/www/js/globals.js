@@ -1,6 +1,10 @@
 var urlWS = "";
 var flagSenha = "N";
 
+if (localStorage.getItem("verificaUrlOnline") === null) {
+    localStorage.setItem("verificaUrlOnline", "S");
+}
+
 function checaWS(){
     
     if (localStorage.getItem("urlWS") === null) {
@@ -206,18 +210,27 @@ function verificaConexao(){
 };
 
 function checkOnline(url){
-    var http = new XMLHttpRequest();
-    http.open('HEAD', url, false);
-    http.send();
-    var resultado = http.status!=404;
-    
-    if(resultado){
-        return true;
+    if(localStorage.getItem("verificaUrlOnline") == "S"){
+        $("#loader").removeClass("hidden");
+        var http = new XMLHttpRequest();
+        http.open('HEAD', url, false);
+        http.send();
+        var resultado = http.status!=404;
+
+        if(resultado){
+            $("#loader").addClass("hidden");
+            localStorage.setItem("verificaUrlOnline", "N");
+            return true;
+        }else{
+            $("#loader").addClass("hidden");
+            navigator.notification.alert("O endereço está fora do ar ou URL de acesso digitado incorretamente.", null,"Erro");
+            document.getElementById("txtURLConfiguracoes").value = localStorage.getItem("urlWS");
+            activate_page("#configuracoes");
+            return false;
+        }
+        
     }else{
-        navigator.notification.alert("O endereço está fora do ar ou URL de acesso digitado incorretamente.", null,"Erro");
-        document.getElementById("txtURLConfiguracoes").value = localStorage.getItem("urlWS");
-        activate_page("#configuracoes");
-        return false;
+        return true;
     }
     
 }

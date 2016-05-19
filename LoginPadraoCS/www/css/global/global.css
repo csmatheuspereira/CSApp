@@ -1,0 +1,135 @@
+/* Cores dos temas do aplicativo */
+
+.verde{
+    background-color: rgb(46, 204, 113) !important;
+    border-color: rgb(46, 204, 113) !important;
+}
+
+.laranja{
+    background-color: rgb(243, 156, 18) !important;
+    border-color: rgb(243, 156, 18) !important;
+}
+
+.azul{
+    background-color: rgb(52, 152, 219) !important;
+    border-color: rgb(52, 152, 219) !important;
+}
+
+.vermelho{
+    background-color: rgb(231, 76, 60) !important;
+    border-color: rgb(231, 76, 60) !important;
+}
+
+.roxo{
+    background-color: rgb(142, 68, 173) !important;
+    border-color: rgb(142, 68, 173) !important;
+}
+
+.cinza{
+    background-color: rgb(127, 140, 141) !important;
+    border-color: rgb(127, 140, 141) !important;
+}
+
+.escuro{
+    background-color: rgb(44, 62, 80) !important;
+    border-color: rgb(44, 62, 80) !important;
+}
+
+/* Fim Cores dos temas do aplicativo */
+.badge-final{
+    margin-left: 72%;
+    margin-top: -20%;
+    z-index: 1;
+    width: 25.8% !important;
+    height: 30% !important;
+    background-color: red;
+    border-radius: 48% !important;
+    font-size: 1em !important;
+    font-weight: bold;
+    position: absolute;
+    padding-top:3.8%;
+    color:#fff;
+}
+@media screen and (min-width: 720px){
+    .badge-final{
+        margin-top: -18%;
+        margin-left: 76%;
+        padding-top:4.7%;
+        width: 20% !important;
+        height: 23% !important;
+        font-size: 1em !important;
+    }
+}
+
+
+/* fim Activity Main*/
+
+
+
+/*  CSS Tela Dispositivos  */
+.img-device{
+    float: left;
+    width: 25px;
+    margin-right:10px;
+    margin-top: 5px;
+    margin-left: -5px;
+    
+}
+.text-listv{
+    text-align: left;
+}
+
+/*  Fim CSS Tela Dispositivos  */
+
+
+/*  CSS Tela Vagas  */
+
+.img-vaga{
+    width: 25px;
+    height: 25px;
+    float: right;
+    margin-top: 10px;
+}
+
+/*  Fim CSS Tela Vagas*/
+
+.ripple{
+    overflow:hidden;
+}
+
+.ripple-effect{
+    position: absolute;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background: white;
+
+
+    -webkit-animation: ripple-animation 2s;
+    -ms-animation: ripple-animation 2s;
+}
+
+
+@-webkit-keyframes ripple-animation {
+    0% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(100);
+        opacity: 0;
+    }
+}
+
+@-ms-keyframes ripple-animation {
+    0% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(100);
+        opacity: 0;
+    }
+}
+        
+        

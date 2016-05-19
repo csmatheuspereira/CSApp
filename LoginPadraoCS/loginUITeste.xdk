@@ -1,0 +1,583 @@
+{
+  "project": {
+    "projectSettingsVersion": "3.0.0",
+    "creationData": {
+      "type": "App Designer",
+      "projectTypeName": "com.intel.xdk.projecttype.jsapp",
+      "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
+      "projectGuid": "23237e29-44bd-49d8-85ea-d597f2f6b29f",
+      "lastModifiedDate": 1463675903855,
+      "creationDate": 1460057646367
+    },
+    "XDK-app-designer": "true",
+    "sourceDirectory": "www",
+    "startFile": "index.html",
+    "projectFiles": {
+      "xdk-publish-meta-data.json": {
+        "settings": {
+          "project": {
+            "XDK-not-deployed": "True"
+          }
+        }
+      }
+    },
+    "projectDirectories": {},
+    "libraries": [],
+    "serviceMethods": [],
+    "cordovaPluginsDirectory": "plugins",
+    "cordovaPlugins": [
+      {
+        "id": "cordova-plugin-statusbar",
+        "name": "StatusBar",
+        "version": "2.0.0",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-statusbar",
+        "gitref": "",
+        "paramvals": {},
+        "selectedState": "Included",
+        "dependsOn": [],
+        "topLevel": true,
+        "cordovaVersion": ">=3.0.0",
+        "permissions": {},
+        "description": "Cordova StatusBar Plugin",
+        "data": {},
+        "dependedBy": [],
+        "checksum": "b92cbbef"
+      },
+      {
+        "id": "cordova-plugin-device",
+        "version": "1.1.0",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {},
+        "dependsOn": [],
+        "dependedBy": [],
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-device",
+        "permissions": {},
+        "topLevel": true,
+        "gitref": "",
+        "name": "Device",
+        "description": "Cordova Device Plugin",
+        "checksum": "1eae5d64"
+      },
+      {
+        "id": "cordova-plugin-splashscreen",
+        "version": "2.1.0",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {},
+        "dependsOn": [],
+        "dependedBy": [],
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-splashscreen",
+        "permissions": {},
+        "topLevel": true,
+        "gitref": "",
+        "name": "Splashscreen",
+        "description": "Cordova Splashscreen Plugin",
+        "checksum": "a7fdb6d9"
+      },
+      {
+        "id": "cordova-plugin-dialogs",
+        "name": "Notification",
+        "version": "1.2.0",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-dialogs",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-dialogs",
+        "selectedState": "Included",
+        "checksum": "1af74557",
+        "dependsOn": [],
+        "topLevel": true,
+        "permissions": {},
+        "description": "Cordova Notification Plugin",
+        "data": {},
+        "dependedBy": []
+      },
+      {
+        "id": "phonegap-plugin-push",
+        "name": "PushPlugin",
+        "version": "1.4.3",
+        "originType": "cordova.io",
+        "origin": "phonegap-plugin-push",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/phonegap-plugin-push",
+        "selectedState": "Included",
+        "checksum": "b8b2263e",
+        "dependsOn": [],
+        "topLevel": true,
+        "cordovaVersion": ">=3.0.0",
+        "author": "Bob Easterday",
+        "permissions": {
+          "android:name": [
+            "android.permission.INTERNET",
+            "android.permission.ACCESS_NETWORK_STATE",
+            "android.permission.WAKE_LOCK",
+            "android.permission.VIBRATE",
+            "com.google.android.c2dm.permission.RECEIVE",
+            "$PACKAGE_NAME.permission.C2D_MESSAGE"
+          ]
+        },
+        "description": "\n\t\tThis plugin allows your application to receive push notifications on Android, iOS, WP8 and Windows8 devices.\n    Android uses Google Cloud Messaging.\n    iOS uses Apple APNS Notifications.\n    WP8 uses Microsoft MPNS Notifications.\n    Windows8 uses Microsoft WNS Notifications.\n\t",
+        "data": {},
+        "dependedBy": []
+      },
+      {
+        "id": "cordova-plugin-network-information",
+        "name": "Network Information",
+        "version": "1.1.0",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-network-information",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-network-information",
+        "selectedState": "Included",
+        "checksum": "4be25d7c",
+        "dependsOn": [],
+        "topLevel": true,
+        "permissions": {
+          "android:name": [
+            "android.permission.ACCESS_NETWORK_STATE"
+          ]
+        },
+        "description": "Cordova Network Information Plugin",
+        "data": {},
+        "dependedBy": []
+      }
+    ],
+    "buildConfigurations": {
+      "Android": {
+        "platform_": "android",
+        "runtime_": "Crosswalk with Cordova 3.x",
+        "name_": "Android",
+        "preferences_": {
+          "android-minSdkVersion": "14",
+          "android-targetSdkVersion": "23",
+          "android-installLocation": "auto",
+          "android-signed": true,
+          "Orientation": "portrait"
+        },
+        "isActive_": true,
+        "appName_": "CS",
+        "appID_": "com.compusoft.loginUI",
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [
+            "http://*/*",
+            "https://*/*",
+            "tel:*",
+            "sms:*",
+            "mailto:*",
+            "geo:*",
+            "market:*"
+          ],
+          "navigation": []
+        },
+        "icons_": [
+          {
+            "relPath": "res/mipmap-ldpi/ic_launcher.png",
+            "density": "ldpi",
+            "height": 36,
+            "width": 36
+          },
+          {
+            "relPath": "res/mipmap-mdpi/ic_launcher.png",
+            "density": "mdpi",
+            "height": 48,
+            "width": 48
+          },
+          {
+            "relPath": "res/mipmap-hdpi/ic_launcher.png",
+            "density": "hdpi",
+            "height": 72,
+            "width": 72
+          },
+          {
+            "relPath": "res/mipmap-xhdpi/ic_launcher.png",
+            "density": "xhdpi",
+            "height": 96,
+            "width": 96
+          }
+        ],
+        "splashes_": [
+          {
+            "relPath": "res/mipmap-ldpi/splash.png",
+            "density": "ldpi",
+            "height": 426,
+            "width": 320,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "res/mipmap-mdpi/splash.png",
+            "density": "mdpi",
+            "height": 470,
+            "width": 320,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "res/mipmap-hdpi/splash.png",
+            "density": "hdpi",
+            "height": 640,
+            "width": 480,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "res/mipmap-xhdpi/splash.png",
+            "density": "xhdpi",
+            "height": 960,
+            "width": 720,
+            "orientation": "portrait"
+          }
+        ],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "certificateId_": "DrzF7goh6UeB09CO_GbJdA2",
+        "cordovaCLIVersion_": "5.1.1",
+        "crosswalkVersion_": "16",
+        "appVersion_": "0.3.2",
+        "appAuthor_": "Compusoftware",
+        "appDescription_": "Informações para Gestores e Colaboradores integradas aos ERPs da Compusoftware",
+        "appVersionCode_": "32"
+      },
+      "iOS": {
+        "platform_": "ios",
+        "runtime_": "Cordova 3.x",
+        "name_": "iOS",
+        "preferences_": {
+          "ios-configuration": "adhoc",
+          "deployment-target": "8.0",
+          "Orientation": "portrait",
+          "Fullscreen": false
+        },
+        "isActive_": true,
+        "appName_": "CS",
+        "appID_": "com.compusoft.loginUI",
+        "appAccess_": {
+          "mode": "whitelist",
+          "network": [
+            "*"
+          ],
+          "intents": [
+            "http://*/*",
+            "https://*/*",
+            "tel:*",
+            "sms:*",
+            "mailto:*",
+            "geo:*",
+            "itms:*",
+            "itms-apps:*"
+          ],
+          "navigation": [],
+          "properties": {}
+        },
+        "icons_": [
+          {
+            "relPath": "res/iOS/AppIcon.appiconset/Icon-Small.png",
+            "height": 29,
+            "width": 29
+          },
+          {
+            "relPath": "res/iOS/AppIcon.appiconset/Icon-Small@2x.png",
+            "height": 58,
+            "width": 58
+          },
+          {
+            "relPath": "res/iOS/AppIcon.appiconset/Icon-Small@3x.png",
+            "height": 87,
+            "width": 87
+          },
+          {
+            "relPath": "res/iOS/Icon-60.png",
+            "height": 60,
+            "width": 60
+          },
+          {
+            "relPath": "res/iOS/AppIcon.appiconset/Icon-60@2x.png",
+            "height": 120,
+            "width": 120
+          },
+          {
+            "relPath": "res/iOS/AppIcon.appiconset/Icon-60@3x.png",
+            "height": 180,
+            "width": 180
+          },
+          {
+            "relPath": "res/iOS/AppIcon.appiconset/Icon-76.png",
+            "height": 76,
+            "width": 76
+          },
+          {
+            "relPath": "res/iOS/AppIcon.appiconset/Icon-76@2x.png",
+            "height": 152,
+            "width": 152
+          },
+          {
+            "relPath": "res/iOS/AppIcon.appiconset/Icon-40.png",
+            "height": 40,
+            "width": 40
+          },
+          {
+            "relPath": "res/iOS/AppIcon.appiconset/Icon-40@2x.png",
+            "height": 80,
+            "width": 80
+          },
+          {
+            "relPath": "res/iOS/Icon.png",
+            "height": 57,
+            "width": 57
+          },
+          {
+            "relPath": "res/iOS/Icon@2x.png",
+            "height": 114,
+            "width": 114
+          },
+          {
+            "relPath": "res/iOS/Icon-72.png",
+            "height": 72,
+            "width": 72
+          },
+          {
+            "relPath": "res/iOS/Icon-72@2x.png",
+            "height": 144,
+            "width": 144
+          },
+          {
+            "relPath": "res/iOS/Icon-Small-50.png",
+            "height": 50,
+            "width": 50
+          },
+          {
+            "relPath": "res/iOS/Icon-Small-50@2x.png",
+            "height": 100,
+            "width": 100
+          }
+        ],
+        "splashes_": [
+          {
+            "relPath": "res/iOS/750-1334.png",
+            "height": 1334,
+            "width": 750,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "res/iOS/1242-2208.png",
+            "height": 2208,
+            "width": 1242,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "res/iOS/640-1136.png",
+            "height": 1136,
+            "width": 640,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "res/iOS/640-960.png",
+            "height": 960,
+            "width": 640,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "res/iOS/320-480.png",
+            "height": 480,
+            "width": 320,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "res/iOS/1536-2048.png",
+            "height": 2048,
+            "width": 1536,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "res/iOS/768-1024.png",
+            "height": 1024,
+            "width": 768,
+            "orientation": "portrait"
+          }
+        ],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "certificateId_": "vjPAC3R8hEWjozsiEb3tGg2",
+        "iosProvs_": [
+          {
+            "relPath": "adhoci9.mobileprovision",
+            "type": "adhoc"
+          },
+          {
+            "relPath": "profilei9.mobileprovision",
+            "type": "production"
+          }
+        ],
+        "cordovaCLIVersion_": "5.1.1",
+        "crosswalkVersion_": "16",
+        "appVersion_": "0.3.2",
+        "appAuthor_": "Compusoftware",
+        "appDescription_": "Informações para Gestores e Colaboradores integradas aos ERPs da Compusoftware",
+        "appVersionCode_": "0.3.2"
+      },
+      "Windows8": {
+        "platform_": "windows8",
+        "runtime_": "Cordova 3.x",
+        "name_": "Windows8",
+        "preferences_": {
+          "windows-publisher-display-name": "",
+          "windows-publisher-id": ""
+        },
+        "isActive_": true,
+        "appName_": "CompuSoft App",
+        "appID_": "xdk.intel.blank.ad.template",
+        "appAccess_": {
+          "mode": "whitelist",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": [],
+          "properties": {}
+        },
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "certificateId_": "",
+        "cordovaCLIVersion_": "5.1.1",
+        "crosswalkVersion_": "16",
+        "appVersion_": "0.0.0.1",
+        "appAuthor_": "CompuSoft",
+        "appDescription_": "CompuSoft App"
+      },
+      "WebApp": {
+        "platform_": "webapp",
+        "runtime_": "W3C",
+        "name_": "WebApp",
+        "preferences_": {},
+        "isActive_": true,
+        "appName_": "loginUITeste",
+        "appID_": "not.yet.specified",
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "certificateId_": "",
+        "appAuthor_": "Intel XDK",
+        "appVersion_": "0.0.1"
+      },
+      "Chrome": {
+        "platform_": "chromeos",
+        "runtime_": "W3C on Chrome OS",
+        "name_": "Chrome",
+        "preferences_": {},
+        "isActive_": true,
+        "appName_": "loginUITeste",
+        "appID_": "not.yet.specified",
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "certificateId_": "",
+        "appAuthor_": "Intel XDK",
+        "appVersion_": "0.0.1"
+      },
+      "Firefox": {
+        "platform_": "firefoxos",
+        "runtime_": "W3C on Firefox OS",
+        "name_": "Firefox",
+        "preferences_": {},
+        "isActive_": false,
+        "appName_": "loginUITeste",
+        "appID_": "not.yet.specified",
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "certificateId_": "",
+        "appAuthor_": "Intel XDK",
+        "appVersion_": "0.0.1"
+      },
+      "Facebook": {
+        "platform_": "facebook",
+        "runtime_": "W3C on Facebook",
+        "name_": "Facebook",
+        "preferences_": {},
+        "isActive_": false,
+        "appName_": "loginUITeste",
+        "appID_": "not.yet.specified",
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "certificateId_": "",
+        "appAuthor_": "Intel XDK",
+        "appVersion_": "0.0.1"
+      },
+      "WP81": {
+        "platform_": "wp81",
+        "runtime_": "Cordova 3.x",
+        "name_": "WP81",
+        "preferences_": {},
+        "isActive_": true,
+        "appName_": "loginUITeste",
+        "appID_": "not.yet.specified",
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "certificateId_": "",
+        "appVersion_": "0.0.0.1",
+        "cordovaCLIVersion_": "5.1.1",
+        "appAuthor_": "Intel XDK"
+      }
+    },
+    "gameAssetDirectory": "asset",
+    "gameMetadata": {},
+    "projectTags": [],
+    "testDirectory": "test"
+  }
+}

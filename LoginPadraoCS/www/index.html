@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+    <!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="icon-fonts/glyphicons-bootstrap-3.3.6">
+        <link rel="stylesheet" type="text/css" href="media_button_bar/css/media_button_bar.css">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+        <title>CompuSoft</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+        <!--
+  * The "meta viewport" tag (below) helps your app size appropriately to a device's ideal viewport.
+  * Note that Windows device viewports work better when initialized using the @viewport CSS rule.
+  * For a quick overview of "meta viewport" and @viewport, see this article:
+  *   http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag
+  * To see how it works, try your app on a real device with and without a "meta viewport" tag.
+  * Additional useful references include:
+  *   http://www.quirksmode.org/mobile/viewports.html
+  *   http://www.quirksmode.org/mobile/metaviewport/devices.html
+  *   https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
+-->
+
+        <!-- <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1"> -->
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2"> -->
+
+        <style>
+            /* following three (cascaded) are equivalent to above three meta viewport statements */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+            /* see http://dev.w3.org/csswg/css-device-adapt/ */
+                @-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+                @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
+                /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+            
+            
+            .loader {
+                width: 50px;
+                height: 50px;
+                background-image: url("interface/loader.png");
+                
+                -webkit-animation: play .8s steps(19) infinite;
+                   -moz-animation: play .8s steps(19) infinite;
+                    -ms-animation: play .8s steps(19) infinite;
+                     -o-animation: play .8s steps(19) infinite;
+                        animation: play .8s steps(19) infinite;
+                
+            }
+            
+            @-webkit-keyframes play {
+               from { background-position: 0px 0px; }
+                 to { background-position: 0 -950px; }
+            }
+
+            @-moz-keyframes play {
+               from { background-position: 0px 0px; }
+                 to { background-position: 0 -950px; }
+            }
+
+            @-ms-keyframes play {
+              from { background-position: 0px 0px; }
+                 to { background-position: 0 -950px; }
+            }
+
+            @-o-keyframes play {
+               from { background-position: 0px 0px; }
+                 to { background-position: 0 -950px; }
+            }
+
+            @keyframes play {
+               from { background-position: 0px 0px; }
+                 to { background-position: 0 -950px; }
+            }
+        </style>
+
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+        <link rel="stylesheet" type="text/css" href="css/global/global.css">
+
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
+        <!-- Recommended location for your JavaScript libraries -->
+        <!-- These library references (below) are just examples to give you the general idea... -->
+        <!-- <script src="lib/mc/hammer.js"></script> -->
+        <!-- <script src="lib/ft/fastclick.js"></script> -->
+
+        <!--
+  * cordova.js is a phantom lib for "Cordova HTML5 web app," it does nothing in a "Standard HTML5 web app"
+  * Seeing a "Failed to load resource: net::ERR_FILE_NOT_FOUND" message caused by this "cordova.js" script?
+  * The cordova.js script is required if you convert your "Standard HTML5" project into a "Cordova" project.
+  * You can safely ignore the error or comment out this line if you will not be developing a Cordova app.
+-->
+        <script src="cordova.js" id="xdkJScordova_"></script>
+
+        <script src="js/app.js"></script>
+        <!-- for your event code, see README and file comments for details -->
+        <script src="js/init-app.js"></script>
+        <!-- for your init code, see README and file comments for details -->
+        <script src="xdk/init-dev.js"></script>
+        <!-- normalizes device and document ready events, see file for details -->
+        <script type="application/javascript" src="lib/jquery.min.js"></script>
+        <script type="application/javascript" src="js/temas/functions.js"></script>
+        <script type="application/javascript" src="js/index_user_scripts.js"></script>
+        <script type="application/javascript" src="xdk/ad/bs_subpage.js"></script>
+        <script type="application/javascript" src="marginal/marginal-position.min.js"></script>
+
+        <script type="application/javascript" src="js/globals.js"></script>
+        <script type="application/javascript" src="js/novousuario/functions.js"></script>
+        <script type="application/javascript" src="js/dati.js"></script>
+        <script type="application/javascript" src="js/mainpage/functions.js"></script>
+        <script type="application/javascript" src="js/cargo/functions.js"></script>
+        <script type="application/javascript" src="js/dispositivos/functions.js"></script>
+        <script type="application/javascript" src="js/vagas/functions.js"></script>
+
+        <script src="js/idle.js"></script>
+
+        <script>
+            // Iniciar banco de dados local (DatiJS)
+            console.log("dati.initialize()");
+            dati.initialize(function(status){
+            // Caso não se conecte...
+            if(status==false){
+                alert("Não foi possível se conectar ao BD.");
+            }
+                });
+        </script>
+
+        <script type="application/javascript" src="sidebar/js/hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/jquery.hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/swipe-hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/sidebar.js"></script>
+        <script type="application/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+        
+    </head>
+
+    <body>
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
+        <div id="loader" class="hidden" style="width:100%;height:100%;background-color:rgba(0,0,0,.8);z-index:995;position:absolute;">
+            <div class="loader" style="z-index:999;position:absolute;top:45%;left:0;right:0;margin-left:auto;margin-right:auto;"></div>
+        </div>
+        
+        <div align="center" id="internet" class="hidden" style="width:100%;height:100%;background-color:rgba(0,0,0,.8);z-index:995;position:absolute;color:#fff;">
+            <center>
+                <img src="interface/conexao.png" width="150" height="150" style="margin-top:55px;">
+                <br /><br />
+                <p>Problemas na sua conexão com a internet.<br />Verifique e tente novamente.</p>
+                <button class="btn widget uib_w_3 d-margins btn-lg btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnTentarNovamente"><i class="glyphicon glyphicon-repeat button-icon-left" data-position="left"></i> Tente novamente</button>
+            </center>
+        </div>
+        
+        <div class="upage mainpageStyleBG" id="mainpage">
+            <div class="upage-outer">
+                <div class="uib-header container-group inner-element uib_w_11" data-uib="layout/header" data-ver="0">
+                    <h2></h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left">
+
+                    </div>
+                    <div class="widget-container content-area horiz-area wrapping-col right">
+                        <button class="btn widget uib_w_13 d-margins btnVoltarStyleCustom btn-lg btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnConfigMainPage"> <i class="glyphicon glyphicon-cog button-icon-right" data-position="right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="upage-content ac0 content-area vertical-col left" id="page_68_81">
+
+                    <div class="grid grid-pad urow uib_row_1 row-height-1" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_2 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="widget uib_w_26 scale-image txtUsuarioNomeUsuario" data-uib="media/img" data-ver="0">
+                                    <figure class="figure-align">
+                                        <img class="customLogo" src="interface/Logo.png">
+
+                                        <figcaption data-position="bottom"></figcaption>
+                                    </figure>
+                                </div>
+                                <div class="table-thing widget uib_w_1 d-margins" data-uib="twitter%20bootstrap/select" data-ver="1">
+                                    <label class="narrow-control"></label>
+                                    <select class="wide-control form-control default input-lg" name="cmbUsuarioMainPage" id="cmbUsuarioMainPage">
+                                        <option>Usuário</option>
+                                    </select>
+                                </div>
+                                <div class="table-thing widget uib_w_2 d-margins" data-uib="twitter%20bootstrap/input" data-ver="1">
+                                    <label class="narrow-control" for="txtSenhaMainPage"></label>
+                                    <input class="wide-control form-control default input-lg" type="password" placeholder="Senha" name="txtSenhaMainPage" id="txtSenhaMainPage">
+                                </div>
+                                <button class="btn widget uib_w_3 d-margins btn-lg btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnLoginMainPage"><i class="glyphicon glyphicon-log-in button-icon-left" data-position="left"></i>Entrar</button>
+                                <button class="btn widget uib_w_4 btnNovoStyleText txtNovoStyleMargins btn-link btnVoltarStyleCustom" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnNovoMainPage">Não encontrou seu usuário? Clique aqui.</button><span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal outer-element uib_w_39" data-uib="twitter%20bootstrap/modal" data-ver="1" data-backdrop="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="close" data-dismiss="modal">x</button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="col uib_col_5 single-col" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <div class="widget uib_w_40 d-margins exclamStyleSize" data-uib="media/img" data-ver="0">
+                                        <figure class="figure-align">
+                                            <img src="interface/exclam.png">
+
+                                            <figcaption data-position="bottom"></figcaption>
+                                        </figure>
+                                    </div>
+                                    <div class="alert no_wrap widget uib_w_41 d-margins alert-warning" data-uib="twitter%20bootstrap/alert" data-ver="1">
+                                        <center><b>Desconectado por inatividade.</b>
+                                            <br>Você pode desabilitar essa função em "Configurações</center>
+                                    </div>
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="upage hidden" id="novousuario">
+            <div class="upage-outer">
+                <div class="uib-header header-bg container-group inner-element uib_w_8 uib-header-fixed headerStyleCustom" data-uib="layout/header" data-ver="0">
+                    <h2>Novo usuário</h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left">
+                        <button class="btn widget uib_w_9 d-margins btnVoltarStyleCustom btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnVoltarNovoUsuario"><i class="glyphicon glyphicon-chevron-left button-icon-left" data-position="left"></i> 
+                        </button>
+                    </div>
+                    <div class="widget-container content-area horiz-area wrapping-col right"></div>
+                </div>
+                <div class="upage-content ac0 content-area vertical-col left" id="page_69_83">
+                    <div class="grid grid-pad urow uib_row_4 row-height-4" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_11 col-0_12-12" data-uib="layout/col" data-ver="0">
+
+                            <div class="widget-container content-area vertical-col">
+
+                                <div class="table-thing widget uib_w_5 d-margins headerNovoUsuario" data-uib="twitter%20bootstrap/input" data-ver="1">
+                                    <label class="narrow-control" for="txtNomeNovoUsuario"></label>
+                                    <input class="wide-control form-control default input-lg" type="text" placeholder="Nome do usuário" name=" txtNomeNovoUsuario" id="txtNomeNovoUsuario">
+                                </div>
+                                <div class="table-thing widget uib_w_6 d-margins" data-uib="twitter%20bootstrap/input" data-ver="1">
+                                    <label class="narrow-control" for="txtSenhaNovoUsuario"></label>
+                                    <input class="wide-control form-control default input-lg" type="password" placeholder="Senha" id="txtSenhaNovoUsuario">
+                                </div>
+
+                                <button class="btn widget uib_w_7 d-margins btn-lg btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnLoginNovoUsuario"><i class="glyphicon glyphicon-log-in button-icon-left" data-position="left"></i>Entrar</button><span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="upage hidden" id="configuracoes">
+            <div class="upage-outer">
+                <div class="uib-header header-bg container-group inner-element uib_w_14 headerStyleCustom" data-uib="layout/header" data-ver="0">
+                    <h2>Configurações</h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left">
+
+                        <button class="btn widget uib_w_31 d-margins btnVoltarStyleCustom btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnVoltarConfiguracoes"><i class="glyphicon glyphicon-chevron-left button-icon-left" data-position="left"></i>
+                        </button>
+                    </div>
+                    <div class="widget-container content-area horiz-area wrapping-col right"></div>
+                </div>
+                <div class="upage-content ac0 content-area vertical-col left" id="page_79_99">
+
+                    <div class="grid grid-pad urow uib_row_2 row-height-2" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_6 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="tarea widget uib_w_27 d-margins" data-uib="media/text" data-ver="0" name="uib_w_27">
+                                    <div class="widget-container left-receptacle"></div>
+                                    <div class="widget-container right-receptacle"></div>
+                                    <div class="text-container">
+                                        <p style="font-size:1.25em">Definir a URL de acesso:</p>
+                                    </div>
+                                </div>
+
+                                <div class="table-thing widget uib_w_28 d-margins" data-uib="twitter%20bootstrap/input" data-ver="1">
+                                    <label class="narrow-control" for="txtURLConfiguracoes"></label>
+                                    <input class="wide-control form-control default input-lg" type="text" placeholder="http://" id="txtURLConfiguracoes">
+                                </div>
+
+                                <button class="btn widget uib_w_30 d-margins btn-lg btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnSalvarConfiguracoes"><i class="glyphicon glyphicon-ok button-icon-left" data-position="left"></i>Salvar</button>
+
+                                <hr>
+
+                                <div class="tarea widget uib_w_45 d-margins" data-uib="media/text" data-ver="0" name="uib_w_45">
+                                    <div class="widget-container left-receptacle"></div>
+                                    <div class="widget-container right-receptacle"></div>
+                                    <div class="text-container">
+                                        <p style="font-size:1.25em">Apagar usuários da página inicial</p>
+                                    </div>
+                                </div>
+                                <button class="btn widget uib_w_43 d-margins btn-lg btn-danger" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnLimparConfiguracoes"><i class="glyphicon glyphicon-trash button-icon-left" data-position="left"></i>Apagar dados locais</button><span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="upage hidden" id="activitymain">
+            <div class="upage-outer">
+                <div class="uib-header header-bg container-group inner-element uib_w_34 headerStyleCustom" data-uib="layout/header" data-ver="0">
+                    <h2>Bem-vindo</h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col right">
+                        <button class="btn widget uib_w_46 d-margins btnVoltarStyleCustom btn-lg btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnConfigActivityMain"><i class="glyphicon glyphicon-cog button-icon-left" data-position="left"></i> 
+                        </button>
+                    </div>
+                </div>
+                <div class="upage-content ac0 content-area vertical-col left" id="page_42_63">
+                    <div class="grid grid-pad urow uib_row_5 row-height-1" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_12 col-0_12-12 RowStyleCustom" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area wrapping-col left">
+                                <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_52 d-margins btnMenuStyleCustom media-button-text-bottom" data-uib="media/graphic_button"
+                                data-ver="0" id="btnCargosActivityMain" href="#">
+                                    <img src="interface/UI/RH/cargos.png">
+                                    <span class="uib-caption">Cargos</span>
+                                </a>
+                                <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_52 d-margins btnMenuStyleCustom media-button-text-bottom" data-uib="media/graphic_button"
+                                data-ver="0" id="btnVagasActivityMain" href="#">
+                                    <span class="badge-final badVagas hidden">+9</span>
+                                    <img src="interface/UI/vagas/vagas.png">
+                                    <span class="uib-caption">Vagas</span>
+                                </a>
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="upage hidden" id="configGlobal">
+            <div class="upage-outer">
+                <div class="uib-header header-bg container-group inner-element uib_w_47 headerStyleCustom" data-uib="layout/header" data-ver="0">
+                    <h2>Configurações</h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left">
+                        <button class="btn widget uib_w_51 d-margins btn-link btnVoltarStyleCustom" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnVoltarConfig"><i class="glyphicon glyphicon-chevron-left button-icon-left" data-position="left"></i> 
+                        </button>
+                    </div>
+                    <div class="widget-container content-area horiz-area wrapping-col right"></div>
+                </div>
+                <div class="upage-content ac0 content-area vertical-col left" id="page_55_68">
+                    <div class="grid grid-pad urow uib_row_3 row-height-3" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_7 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <label class="checkbox checkbox-padding-left widget uib_w_50 d-margins" data-uib="twitter%20bootstrap/checkbox" data-ver="1" style="display: none;">
+                                    <input type="checkbox" style="display: none;">Desconectar-se automaticamente</label>
+                                <button class="btn widget uib_w_49 d-margins btn-lg btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnDispositivosConfig"><i class="glyphicon glyphicon-phone button-icon-left" data-position="left"></i>Dispositivos</button>
+                                <button class="btn widget uib_w_72 d-margins btn-lg btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnTemasConfig"><i class="glyphicon glyphicon-tint button-icon-left" data-position="left"></i>Temas</button>
+
+                                <button class="btn widget uib_w_48 d-margins btn-lg btn-danger" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnSairConfig"><i class="glyphicon glyphicon-log-out button-icon-left" data-position="left"></i>Sair</button><span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="upage hidden" id="cargo">
+            <div class="upage-outer">
+                <div class="uib-header header-bg container-group inner-element uib_w_53 headerStyleCustom uib-header-fixed" data-uib="layout/header" data-ver="0">
+                    <h2>RH/Cargos</h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left">
+                        <button class="btn widget uib_w_54 d-margins btnVoltarStyleCustom btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnVoltarCargo"> <i class="glyphicon glyphicon-chevron-left"></i>
+                        </button>
+                    </div>
+                    <div class="widget-container content-area horiz-area wrapping-col right"></div>
+                </div>
+                <div class="upage-content ac0 content-area vertical-col left" id="page_31_57">
+                    <div class="panel widget uib_w_55 d-margins pnMainStyleCustom panel-default" data-uib="twitter%20bootstrap/panel" data-ver="1" id="pnMainCargo">
+                        <div class="col uib_col_14 single-col" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="upage hidden" id="dispositivos">
+            <div class="upage-outer">
+                <div class="uib-header header-bg container-group inner-element uib_w_56 headerStyleCustom uib-header-fixed" data-uib="layout/header" data-ver="0">
+                    <h2>Dispositivos</h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left">
+                        <button class="btn widget uib_w_57 d-margins btnVoltarStyleCustom btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnVoltarDispositivos"><i class="glyphicon glyphicon-chevron-left button-icon-left" data-position="left"></i> 
+                        </button>
+                    </div>
+                    <div class="widget-container content-area horiz-area wrapping-col right"></div>
+                </div>
+                <div class="upage-content ac0 content-area vertical-col left" id="page_46_37">
+                    <div class="list-group widget uib_w_58 d-margins pnMainStyleCustom" data-uib="twitter%20bootstrap/list_group" data-ver="1" id="lvDispositivos">
+                        <a class="list-group-item allow-badge widget uib_w_59" data-uib="twitter%20bootstrap/list_item" data-ver="1" id="lvItemDisp">
+                            <img src="images/apple.png" class="img-device">
+
+                            <h4 class="list-group-item-heading text-listv">
+                                    Iphone 6
+                                    <button class="btn widget uib_w_60 d-margins btnDeletaDispStyleCustom btn-link" btn-listv-close="" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnDeletaDisp"><i class="glyphicon glyphicon-remove" data-position="icon only"></i></button>
+                               </h4>
+                            <p class="list-group-item-text text-listv" align="left">Ultimo Acesso : 18:00 15/07/2016</p>
+
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="upage hidden" id="vagas">
+            <div class="upage-outer">
+                <div class="uib-header container-group inner-element uib_w_61 headerStyleCustom header-bg uib-header-fixed" data-uib="layout/header" data-ver="0">
+                    <h2>Vagas</h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left">
+                        <button class="btn widget uib_w_66 d-margins btn-link btnVoltarStyleCustom" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnVoltarVagas"><i class="glyphicon glyphicon-chevron-left button-icon-left" data-position="left"></i> 
+                        </button>
+                    </div>
+                    <div class="widget-container content-area horiz-area wrapping-col right"></div>
+                </div>
+                <div class="upage-content ac0 content-area vertical-col left" id="page_2_92">
+                    <div class="list-group widget uib_w_62 d-margins pnMainStyleCustom" data-uib="twitter%20bootstrap/list_group" data-ver="1" id="lvVagas">
+                        <a class="list-group-item allow-badge widget uib_w_63" data-uib="twitter%20bootstrap/list_item" data-ver="1" id="lvItemVaga">
+                            <img class="img-vaga" src="interface/UI/vagas/seta_direita.png">
+                            <h4 class="list-group-item-heading">Gerente de RH</h4>
+                            <p class="list-group-item-text">Inscrição até 23/05</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="upage hidden" id="vaga">
+            <div class="upage-outer">
+                <div class="uib-header header-bg container-group inner-element uib_w_69 headerStyleCustom uib-header-fixed" data-uib="layout/header" data-ver="0">
+                    <h2>Vaga</h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left">
+                        <button class="btn widget uib_w_70 d-margins btnVoltarStyleCustom btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnVoltarVaga"><i class="glyphicon glyphicon-chevron-left button-icon-left" data-position="left"></i> 
+                        </button>
+                    </div>
+                    <div class="widget-container content-area horiz-area wrapping-col right"></div>
+                </div>
+                <div class="upage-content ac0 content-area vertical-col left" id="page_1_31">
+                    <div class="panel widget uib_w_67 d-margins pnMainStyleCustom pnMainStyleMargins panel-default" data-uib="twitter%20bootstrap/panel" data-ver="1" id="pnVaga">
+                        <div class="panel-heading">
+                            <div class="widget-container">
+                                <div class="tarea widget uib_w_71 d-margins pnMainStyleMargins" data-uib="media/text" data-ver="0" name="uib_w_71">
+                                    <div class="widget-container left-receptacle"></div>
+                                    <div class="widget-container right-receptacle"></div>
+                                    <div class="text-container">
+                                        <h3><strong>Gerente RH</strong></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col uib_col_15 single-col" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="tarea widget uib_w_68 d-margins" data-uib="media/text" data-ver="0" name="uib_w_68">
+                                    <div class="widget-container left-receptacle"></div>
+                                    <div class="widget-container right-receptacle"></div>
+                                    <div class="text-container">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+                                        <p><strong>Inscrições até 23/05</strong> - Procurar o departamento de RH</p>
+                                    </div>
+                                </div>
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="upage hidden" id="configTemas">
+            <div class="upage-outer">
+                <div class="uib-header header-bg container-group inner-element uib_w_73 headerStyleCustom" data-uib="layout/header" data-ver="0">
+                    <h2>Temas</h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left">
+                        <button class="btn widget uib_w_74 d-margins btnVoltarStyleCustom btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnVoltarTema"><i class="glyphicon glyphicon-chevron-left" data-position="icon only"></i>
+                        </button>
+                    </div>
+                    <div class="widget-container content-area horiz-area wrapping-col right"></div>
+                </div>
+                <div class="upage-content ac0 content-area vertical-col" id="page_27_44">
+                    <div class="tarea widget uib_w_78 d-margins" data-uib="media/text" data-ver="0" name="uib_w_78">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div class="text-container">
+                            <h3><strong>Escolha um tema</strong></h3>
+                        </div>
+                    </div>
+                    <div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_16 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area wrapping-col left">
+                                <center>
+                                    <button class="btn widget uib_w_75 d-margins btnTemaCores vermelho btn-default ripple" data-uib="twitter%20bootstrap/button" data-ver="1" id="vermelho"> <i class="glyphicon glyphicon-ok hidden vermc" aria-hidden="true" style="font-size:2.7em; color:#fff;"></i>
+                                    </button>
+                                    <button class="btn widget uib_w_77 d-margins btnTemaCores btn-default verde ripple" data-uib="twitter%20bootstrap/button" data-ver="1" id="verde"><i class="glyphicon glyphicon-ok hidden verdc" aria-hidden="true" style="font-size:2.7em; color:#fff;"></i>
+                                    </button>
+                                    <button class="btn widget uib_w_79 d-margins btnTemaCores btn-default azul ripple" data-uib="twitter%20bootstrap/button" data-ver="1" id="azul"><i class="glyphicon glyphicon-ok hidden azulc" aria-hidden="true" style="font-size:2.7em; color:#fff;"></i>
+                                    </button>
+                                    <button class="btn widget uib_w_80 d-margins btnTemaCores btn-default laranja ripple" data-uib="twitter%20bootstrap/button" data-ver="1" id="laranja"><i class="glyphicon glyphicon-ok hidden larac" aria-hidden="true" style="font-size:2.7em; color:#fff;"></i>
+                                    </button>
+                                    <button class="btn widget uib_w_81 d-margins btnTemaCores btn-default roxo ripple" data-uib="twitter%20bootstrap/button" data-ver="1" id="roxo"><i class="glyphicon glyphicon-ok hidden roxoc" aria-hidden="true" style="font-size:2.7em; color:#fff;"></i>
+                                    </button>
+                                    <button class="btn widget uib_w_82 d-margins btnTemaCores btn-default cinza ripple" data-uib="twitter%20bootstrap/button" data-ver="1" id="cinza"><i class="glyphicon glyphicon-ok hidden cinzc" aria-hidden="true" style="font-size:2.7em; color:#fff;"></i>
+                                    </button>
+                                    <button class="btn widget uib_w_83 d-margins btnTemaCores btn-default escuro ripple" data-uib="twitter%20bootstrap/button" data-ver="1" id="escuro"><i class="glyphicon glyphicon-ok hidden escuc" aria-hidden="true" style="font-size:2.7em; color:#fff;"></i>
+                                    </button>
+                                    <span class="uib_shim"></span>
+                                </center>
+                            </div>
+
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

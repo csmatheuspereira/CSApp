@@ -135,6 +135,7 @@
     $(document).on("click", "#btnConfigMainPage", function(evt)
     {                
         document.getElementById("txtURLConfiguracoes").value = localStorage.getItem("urlWS");
+        localStorage.setItem("verificaUrlOnline", "S");
         activate_page("#configuracoes"); 
     });
 

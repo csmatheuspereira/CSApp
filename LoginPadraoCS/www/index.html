@@ -5,7 +5,6 @@
   -->
 
     <head>
-        <link rel="stylesheet" type="text/css" href="icon-fonts/glyphicons-bootstrap-3.3.6">
         <link rel="stylesheet" type="text/css" href="media_button_bar/css/media_button_bar.css">
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
@@ -135,6 +134,8 @@
         <script type="application/javascript" src="sidebar/js/swipe-hammer.js"></script>
         <script type="application/javascript" src="sidebar/js/sidebar.js"></script>
         <script type="application/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="application/javascript" src="js/suggestions/typeahead.js"></script>
+        <script type="application/javascript" src="js/suggestions/functions.js"></script>
 
     </head>
 
@@ -297,11 +298,14 @@
 
                                 <div class="table-thing widget uib_w_28 d-margins" data-uib="twitter%20bootstrap/input" data-ver="1">
                                     <label class="narrow-control" for="txtURLConfiguracoes"></label>
-                                    <input class="wide-control form-control default input-lg" type="text" placeholder="http://" id="txtURLConfiguracoes" list="urls">
+                                    
+                                        <input class="wide-control form-control default input-lg typeahead" type="text" placeholder="http://" id="txtURLConfiguracoes">
+<!--
                                     <datalist id="urls">
                                         <option value="http://192.168.1.6/ws/index.php">Servidor Compusoft</option>
                                         <option value="http://ns1.compusoft-info.com.br:8989/ws/index.php">Servidor Aralco</option>
                                     </datalist>
+-->
                                 </div>
 
                                 <button class="btn widget uib_w_30 d-margins btn-lg btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnSalvarConfiguracoes"><i class="glyphicon glyphicon-ok button-icon-left" data-position="left"></i>Salvar</button>

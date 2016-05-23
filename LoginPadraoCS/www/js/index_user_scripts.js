@@ -309,8 +309,8 @@
         var values = {'acao':'vagas', 
                       'Login':localStorage.getItem("login"),
                       'Senha':localStorage.getItem("senha"),
-                      'FlagSenha':flagSenha,
-                      'idUsuario':localStorage.getItem("idUsuario")
+                      'FlagSenha':flagSenha
+                     // 'idUsuario':localStorage.getItem("idUsuario")
                      };
             
         

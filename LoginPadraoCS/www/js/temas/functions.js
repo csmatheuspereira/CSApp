@@ -10,6 +10,10 @@ function definirTema(){
         $(".header-bg").addClass(localStorage.getItem("temaAtual"));
 
         $(".btn-primary").addClass(localStorage.getItem("temaAtual"));
+          
+        $(".panel-collapse").addClass(localStorage.getItem("temaAtual"));
+        
+        $(".progress-bar").addClass(localStorage.getItem("temaAtual"));
         
         $("."+selecionaCheck(localStorage.getItem("temaAtual"))).removeClass("hidden");
         selecionaFundos(localStorage.getItem("temaAtual"));
@@ -37,8 +41,13 @@ $(document).on("click", ".btnTemaCores", function(evt)
 
                 $(".btn-primary").addClass(this.id);
                 $(".btn-primary").removeClass(localStorage.getItem("temaAnterior"));
-
-
+                
+                $(".panel-collapse").addClass(this.id);
+                $(".panel-collapse").removeClass(localStorage.getItem("temaAnterior"));
+                
+                $(".progress-bar").addClass(this.id);
+                $(".progress-bar").removeClass(localStorage.getItem("temaAnterior"));
+                 
                 localStorage.setItem("temaAtual", this.id);
                 localStorage.setItem("temaAnterior", this.id);
                 selecionaFundos(localStorage.getItem("temaAtual"));

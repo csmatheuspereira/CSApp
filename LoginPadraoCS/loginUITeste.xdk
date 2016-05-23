@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "23237e29-44bd-49d8-85ea-d597f2f6b29f",
-      "lastModifiedDate": 1463675903855,
+      "lastModifiedDate": 1463774203702,
       "creationDate": 1460057646367
     },
     "XDK-app-designer": "true",
@@ -164,7 +164,7 @@
         "appName_": "CS",
         "appID_": "com.compusoft.loginUI",
         "appAccess_": {
-          "mode": "legacy",
+          "mode": "whitelist",
           "network": [
             "*"
           ],
@@ -177,7 +177,8 @@
             "geo:*",
             "market:*"
           ],
-          "navigation": []
+          "navigation": [],
+          "properties": {}
         },
         "icons_": [
           {
@@ -237,13 +238,13 @@
         ],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "DrzF7goh6UeB09CO_GbJdA2",
+        "certificateId_": "B6yFPyCMJUazEuEnCtNThw2",
         "cordovaCLIVersion_": "5.1.1",
         "crosswalkVersion_": "16",
-        "appVersion_": "0.3.2",
+        "appVersion_": "0.3.6",
         "appAuthor_": "Compusoftware",
         "appDescription_": "Informações para Gestores e Colaboradores integradas aos ERPs da Compusoftware",
-        "appVersionCode_": "32"
+        "appVersionCode_": "36"
       },
       "iOS": {
         "platform_": "ios",
@@ -404,7 +405,7 @@
         ],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "vjPAC3R8hEWjozsiEb3tGg2",
+        "certificateId_": "mHhxQduaiEu2E8IMhbQzXg2",
         "iosProvs_": [
           {
             "relPath": "adhoci9.mobileprovision",
@@ -417,10 +418,10 @@
         ],
         "cordovaCLIVersion_": "5.1.1",
         "crosswalkVersion_": "16",
-        "appVersion_": "0.3.2",
+        "appVersion_": "0.3.6",
         "appAuthor_": "Compusoftware",
         "appDescription_": "Informações para Gestores e Colaboradores integradas aos ERPs da Compusoftware",
-        "appVersionCode_": "0.3.2"
+        "appVersionCode_": "0.3.6"
       },
       "Windows8": {
         "platform_": "windows8",

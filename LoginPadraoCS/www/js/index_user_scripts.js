@@ -371,8 +371,17 @@
         /* graphic button  #btnProgressaoActivityMain */
     $(document).on("click", "#btnProgressaoActivityMain", function(evt)
     {
-        navigator.notification.alert("Em desenvolvimento", null, "Atenção"); 
+        activate_page("#progressao");
+        //navigator.notification.alert("Em desenvolvimento", null, "Atenção"); 
         return false;
+    });
+    
+        /* button  #btnVoltarProgressao */
+    $(document).on("click", "#btnVoltarProgressao", function(evt)
+    {
+         /*global activate_page */
+         activate_page("#activitymain"); 
+         return false;
     });
     
     }       

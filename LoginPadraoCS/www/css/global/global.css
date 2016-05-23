@@ -1,3 +1,62 @@
+/*  Tela progressão */
+
+ .accordion-toggle{
+    width: 100%;
+    color: aliceblue;
+    border-radius: 0px !important;
+}
+.accordion-toggle:hover{
+    width: 100%;
+    color: aliceblue;
+    text-decoration: none;
+}
+ .collapse-arrow{
+    width: 20px;
+    height: 20px;
+    float: right;
+}
+
+.listv-marg{
+/*   margin-top: -15px; !important;*/
+/*   width: 111% !important;*/
+/*   margin-left: -15px !important;*/
+/*    margin: 0px; !important;*/
+/*    float: left;*/
+/*    margin-right: -40px !important;*/
+/*   margin-bottom: -15px !important;    */
+}
+@media screen and (min-width: 650px){
+    .listv-marg{
+/*        width: 104.2% !important;*/
+    }
+}
+
+.painel-atual{
+    margin-top: 60px !important;
+    padding-bottom: -25px !important;
+    margin-bottom: 0px !important;
+}
+.painel-proximo{
+    padding-bottom: -25px !important;
+    margin-top: 0px !important;
+
+}
+.panel-collapse{
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    margin-bottom: 0px;
+}
+.panel-body{
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
+}
+
+
+/*  fim tela progressão*/
+
+
 /* Cores dos temas do aplicativo */
 
 .verde{

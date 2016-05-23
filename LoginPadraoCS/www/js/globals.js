@@ -260,7 +260,7 @@ function sair(){
             }            
         }, "Confirmação", ["Sim", "Não"]);                
     
-    } else if (window.location.hash == "#cargo" || window.location.hash == "#vagas" || window.location.hash == "#configGlobal"){
+    } else if (window.location.hash == "#cargo" || window.location.hash == "#vagas" || window.location.hash == "#configGlobal" || window.location.hash == "#progressao" ){
         activate_page("#activitymain");
     
     } else if (window.location.hash == "#vaga"){

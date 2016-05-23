@@ -294,14 +294,12 @@
                                         <p style="font-size:1.25em">Definir a URL de acesso:</p>
                                     </div>
                                 </div>
-
-                                <div class="table-thing widget uib_w_28 d-margins" data-uib="twitter%20bootstrap/input" data-ver="1">
-                                    <label class="narrow-control" for="txtURLConfiguracoes"></label>
-                                    <input class="wide-control form-control default input-lg" type="text" placeholder="http://" id="txtURLConfiguracoes" list="urls">
-                                    <datalist id="urls">
-                                        <option value="http://192.168.1.6/ws/index.php">Servidor Compusoft</option>
+                                <div class="table-thing widget uib_w_85 d-margins" data-uib="twitter%20bootstrap/select" data-ver="1">
+                                    <label class="narrow-control"></label>
+                                    <select class="wide-control form-control default input-lg" id="cmbURLConfiguracoes">
+                                        <option value="http://192.168.1.6/ws/index.php">Servidor CS</option>
                                         <option value="http://ns1.compusoft-info.com.br:8989/ws/index.php">Servidor Aralco</option>
-                                    </datalist>
+                                    </select>
                                 </div>
 
                                 <button class="btn widget uib_w_30 d-margins btn-lg btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnSalvarConfiguracoes"><i class="glyphicon glyphicon-ok button-icon-left" data-position="left"></i>Salvar</button>
@@ -347,12 +345,12 @@
                                 </a>
                                 <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_52 d-margins btnMenuStyleCustom media-button-text-bottom" data-uib="media/graphic_button"
                                 data-ver="0" id="btnVagasActivityMain" href="#">
-                                    <span class="badge-final badVagas hidden">+9</span>
+                                    <span class="badge-final badVagas hidden"></span>
                                     <img src="interface/UI/vagas/vagas.png">
                                     <span class="uib-caption">Vagas</span>
                                 </a>
-                                <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_84 d-margins btnMenuStyleCustom media-button-text-bottom"
-                                data-uib="media/graphic_button" data-ver="0">
+                                <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_84 d-margins btnMenuStyleCustom media-button-text-bottom" data-uib="media/graphic_button"
+                                data-ver="0" id="btnProgressaoActivityMain">
                                     <img src="interface/UI/progressao/UI_Progressao.png">
                                     <span class="uib-caption">Progressão</span>
                                 </a>
@@ -399,7 +397,7 @@
         <div class="upage hidden" id="cargo">
             <div class="upage-outer">
                 <div class="uib-header header-bg container-group inner-element uib_w_53 headerStyleCustom uib-header-fixed" data-uib="layout/header" data-ver="0">
-                    <h2>RH/Cargos</h2>
+                    <h2>Cargos</h2>
                     <div class="widget-container wrapping-col single-centered"></div>
                     <div class="widget-container content-area horiz-area wrapping-col left">
                         <button class="btn widget uib_w_54 d-margins btnVoltarStyleCustom btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnVoltarCargo"> <i class="glyphicon glyphicon-chevron-left"></i>

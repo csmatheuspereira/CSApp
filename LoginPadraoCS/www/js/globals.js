@@ -1,6 +1,10 @@
 var urlWS = "";
 var flagSenha = "N";
 
+if (localStorage.getItem("verificaUrlOnline") === null) {
+    localStorage.setItem("verificaUrlOnline", "S");
+}
+
 function checaWS(){
     
     if (localStorage.getItem("urlWS") === null) {
@@ -206,18 +210,68 @@ function verificaConexao(){
 };
 
 function checkOnline(url){
-    var http = new XMLHttpRequest();
-    http.open('HEAD', url, false);
-    http.send();
-    var resultado = http.status!=404;
-    
-    if(resultado){
-        return true;
+    if(localStorage.getItem("verificaUrlOnline") == "S"){
+        $("#loader").removeClass("hidden");
+        var http = new XMLHttpRequest();
+        http.open('HEAD', url, false);
+        http.send();
+        var resultado = http.status!=404;
+
+        if(resultado){
+            $("#loader").addClass("hidden");
+            localStorage.setItem("verificaUrlOnline", "N");
+            return true;
+        }else{
+            $("#loader").addClass("hidden");
+            navigator.notification.alert("O endereço está fora do ar ou URL de acesso digitado incorretamente.", null,"Erro");
+            document.getElementById("txtURLConfiguracoes").value = localStorage.getItem("urlWS");
+            activate_page("#configuracoes");
+            return false;
+        }
+        
     }else{
-        navigator.notification.alert("O endereço está fora do ar ou URL de acesso digitado incorretamente.", null,"Erro");
-        document.getElementById("txtURLConfiguracoes").value = localStorage.getItem("urlWS");
-        activate_page("#configuracoes");
-        return false;
+        return true;
     }
+    
+}
+
+function sair(){    
+    
+    if (window.location.hash == "#mainpage" || window.location.hash == "##mainsub"){
+        navigator.notification.confirm("Deseja sair do aplicativo?", function(buttonID){
+            
+            if(buttonID == 1){
+                if(device.platform.toLowerCase() == "android") { navigator.app.exitApp(); }
+            }            
+        }, "Confirmação", ["Sim", "Não"]);        
+        
+    } else if (window.location.hash == "#activitymain") {
+        navigator.notification.confirm("Deseja desconectar-se do aplicativo?", function(buttonID){
+            
+            if(buttonID == 1){
+                var values = {'acao':'logout','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'FlagSenha':flagSenha,'dispUUID':device.uuid};
+
+                if (checaWS()) {
+                    webService(values, "#retorno", logout);
+                } else {
+                    navigator.notification.alert("Defina a URL de serviço!", null, "Atenção");
+                    activate_page("#configuracoes");
+                }                
+            }            
+        }, "Confirmação", ["Sim", "Não"]);                
+    
+    } else if (window.location.hash == "#cargo" || window.location.hash == "#vagas" || window.location.hash == "#configGlobal"){
+        activate_page("#activitymain");
+    
+    } else if (window.location.hash == "#vaga"){
+        activate_page("#vagas");                
+    
+    } else if (window.location.hash == "#dispositivos" || window.location.hash == "#configTemas"){
+        activate_page("#configGlobal");
+    
+    } else if (window.location.hash == "#configuracoes" || window.location.hash == "#novousuario"){
+        activate_page("#mainpage");
+    } 
+    
     
 }

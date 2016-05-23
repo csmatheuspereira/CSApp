@@ -234,3 +234,44 @@ function checkOnline(url){
     }
     
 }
+
+function sair(){    
+    
+    if (window.location.hash == "#mainpage" || window.location.hash == "##mainsub"){
+        navigator.notification.confirm("Deseja sair do aplicativo?", function(buttonID){
+            
+            if(buttonID == 1){
+                if(device.platform.toLowerCase() == "android") { navigator.app.exitApp(); }
+            }            
+        }, "Confirmação", ["Sim", "Não"]);        
+        
+    } else if (window.location.hash == "#activitymain") {
+        navigator.notification.confirm("Deseja desconectar-se do aplicativo?", function(buttonID){
+            
+            if(buttonID == 1){
+                var values = {'acao':'logout','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'FlagSenha':flagSenha,'dispUUID':device.uuid};
+
+                if (checaWS()) {
+                    webService(values, "#retorno", logout);
+                } else {
+                    navigator.notification.alert("Defina a URL de serviço!", null, "Atenção");
+                    activate_page("#configuracoes");
+                }                
+            }            
+        }, "Confirmação", ["Sim", "Não"]);                
+    
+    } else if (window.location.hash == "#cargo" || window.location.hash == "#vagas" || window.location.hash == "#configGlobal"){
+        activate_page("#activitymain");
+    
+    } else if (window.location.hash == "#vaga"){
+        activate_page("#vagas");                
+    
+    } else if (window.location.hash == "#dispositivos" || window.location.hash == "#configTemas"){
+        activate_page("#configGlobal");
+    
+    } else if (window.location.hash == "#configuracoes" || window.location.hash == "#novousuario"){
+        activate_page("#mainpage");
+    } 
+    
+    
+}

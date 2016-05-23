@@ -42,8 +42,7 @@
 
         idle.setAwayTimeout(1800000);
     }); // Detectar inatividade do usuário e desconectá-lo em 30 minutos               
-    
-     
+         
      
      
      if(device.platform.toLowerCase() == "android"){
@@ -123,7 +122,7 @@
             if(!checaCampo(valuesCheca)){
                 webService(values, "#retorno", login);
             } else {
-                navigator.notification.alert("Digite valores corretos!", null, "Erro");
+                navigator.notification.alert("Por favor, preencha todos os campos", null, "Erro");
             }
         } else {
             navigator.notification.alert("Defina a URL de serviço!", null, "Atenção");
@@ -133,10 +132,13 @@
         
         /* button  #btnConfigMainPage */
     $(document).on("click", "#btnConfigMainPage", function(evt)
-    {                
-        document.getElementById("txtURLConfiguracoes").value = localStorage.getItem("urlWS");
-        localStorage.setItem("verificaUrlOnline", "S");
+    {                                        
+        // Define o index do combo para o último selecionado
+        document.getElementById("cmbURLConfiguracoes").selectedIndex = localStorage.getItem("indexCmbUrl");
+                    
+        
         activate_page("#configuracoes"); 
+        
     });
 
         /* button  #btnVoltarConfiguracoes */
@@ -148,8 +150,19 @@
             
         /* button  #btnSalvarConfiguracoes */
     $(document).on("click", "#btnSalvarConfiguracoes", function(evt)
-    {
-        localStorage.setItem("urlWS", $("#txtURLConfiguracoes").val());
+    {    
+        // Evita duplicação de checagem da URL
+        localStorage.setItem("verificaUrlOnline", "S");
+        
+        // Coloca no localStorage a URL do campo selecionado
+        localStorage.setItem("urlWS", $("#cmbURLConfiguracoes").val());
+                 
+        
+        // Grava no banco de dados o último item selecionado
+        var cmbURL = document.getElementById("cmbURLConfiguracoes");        
+        localStorage.setItem("indexCmbUrl", cmbURL.selectedIndex);        
+        
+        
         activate_page("#mainpage");
     });              
     
@@ -173,7 +186,7 @@
             if(!checaCampo(valuesCheca)){
                 webService(values, "#retorno", loginMainPage);
             } else {
-                navigator.notification.alert("Digite valores corretos!", null, "Erro");
+                navigator.notification.alert("Por favor, preencha todos os campos", null, "Erro");
             }
         } else {
             navigator.notification.alert("Defina a URL de serviço!", null, "Atenção");
@@ -205,7 +218,7 @@
                 localStorage.removeItem("temaAnterior");
                 navigator.notification.alert("Dados apagados com sucesso!", null, "Sucesso");
             }            
-        }, "Confirmação", ["Sim!", "Não!"]);
+        }, "Confirmação", ["Sim", "Não"]);
     });    
     
     
@@ -351,7 +364,29 @@
         verificaConexao();
     });
     
+
+     
+    
+    document.addEventListener("backbutton", sair, false);
+        /* graphic button  #btnProgressaoActivityMain */
+    $(document).on("click", "#btnProgressaoActivityMain", function(evt)
+    {
+        activate_page("#progressao");
+        //navigator.notification.alert("Em desenvolvimento", null, "Atenção"); 
+        return false;
+    });
+    
+        /* button  #btnVoltarProgressao */
+    $(document).on("click", "#btnVoltarProgressao", function(evt)
+    {
+         /*global activate_page */
+         activate_page("#activitymain"); 
+         return false;
+    });
+    
     }       
+    
+    
     document.addEventListener("app.Ready", register_event_handlers, false);
         
 })();

@@ -4,7 +4,7 @@ function listaVagas(vagas){
         for(var i=0; i < Object.keys(vagas).length; i++){
             
                         
-             var itemVaga = "<a class='list-group-item allow-badge widget uib_w_80' data-uib='twitter%20bootstrap/list_item' href='#' data-ver='1' id='lvItemVaga' data-codigo='"+i+"' data-descM='"+vagas[i].descricaoMacro+"' data-desc='"+ vagas[i].descricao+"'  data-val='"+vagas[i].dataValidade+"'> <img class='img-vaga' src='interface/UI/vagas/seta_direita.png'> <h4 class='list-group-item-heading'>"+ vagas[i].descricao +"</h4> <p class='list-group-item-text'>Inscrição até "+ vagas[i].dataValidade +"</p></a>"
+             var itemVaga = "<a class='list-group-item allow-badge widget uib_w_80' data-uib='twitter%20bootstrap/list_item' href='#vaga' data-ver='1' id='lvItemVaga' data-codigo='"+i+"' data-descM='"+vagas[i].descricaoMacro+"' data-desc='"+ vagas[i].descricao+"'  data-val='"+vagas[i].dataValidade+"'> <img class='img-vaga' src='interface/UI/vagas/seta_direita.png'> <h4 class='list-group-item-heading'>"+ vagas[i].descricao +"</h4> <p class='list-group-item-text'>Inscrição até "+ vagas[i].dataValidade +"</p></a>"
                         
             
             $("#lvVagas").append(itemVaga);

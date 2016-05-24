@@ -747,7 +747,7 @@ label:empty {
 }
 @media all and (min-width: 720px) {
   .row-height-3 > .col > .content-area {
-    min-height: 154px;
+    min-height: 192px;
   }
 }
 .uib-card {
@@ -1165,4 +1165,9 @@ label:empty {
   width: 80px !important;
   height: 80px !important;
   margin-bottom: 0px !important;
+}
+@media all {
+  .toggleMarginStyleCustom {
+    margin-top: 10px;
+  }
 }

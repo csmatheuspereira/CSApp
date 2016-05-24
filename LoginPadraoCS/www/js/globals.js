@@ -275,3 +275,18 @@ function sair(){
     
     
 }
+
+function autoLogin(){
+    if (localStorage.getItem("toggleManterConfigGlobal") == "false" &&
+        localStorage.getItem("login") != null &&
+        localStorage.getItem("login") != null) {
+
+        var dispUUID = device.uuid;
+        var dispNome = device.manufacturer +" "+ device.model;    
+        var dispToken = "";
+        
+        var values = {'acao':'login','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'DispUUID':dispUUID,'DispNome':dispNome,'DispToken':dispToken,'dataClique':badgeNovasVagas()};
+                        
+        webService(values, "#retorno", loginMainPage);            
+    }
+}

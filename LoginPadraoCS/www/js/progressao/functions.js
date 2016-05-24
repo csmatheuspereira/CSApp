@@ -1,6 +1,9 @@
 function progressao(json){
-    
-    if(json.result == true){
+
+    if(json.result === true){
+        
+        $(".erroProgressao").addClass("hidden");
+        $("#page_86_14").removeClass("hidden");
         
         $(".textoCargoAtual").html(json.cargoAtual);
 
@@ -41,13 +44,8 @@ function progressao(json){
         $(".progressoBarProgressao").css('width', json.porcentegem+"%");
 
     }else{
-       $("#page_86_14").html(" ");
-        
-        var nadaEncontrado = "<div class='upage-content ac0 content-area vertical-col left'><div class='alert no_wrap widget uib_w_56 d-margins alert-warning' data-uib='twitter%20bootstrap/alert' data-ver='1' style='margin-top:60px;'><i class='glyphicon glyphicon-warning-sign'></i> Você não possui um cargo associado ao seu usuário.</div></div>"
-        
-        $("#page_86_14").append(nadaEncontrado);
-        nadaEncontrado = "";
-        
+        $("#page_86_14").addClass("hidden");
+        $(".erroProgressao").removeClass("hidden");
     }
     
     activate_page("#progressao");

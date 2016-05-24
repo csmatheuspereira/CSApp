@@ -5,7 +5,6 @@
   -->
 
     <head>
-        <link rel="stylesheet" type="text/css" href="icon-fonts/glyphicons-bootstrap-3.3.6">
         <link rel="stylesheet" type="text/css" href="media_button_bar/css/media_button_bar.css">
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
@@ -79,6 +78,7 @@
         <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
         <link rel="stylesheet" type="text/css" href="css/global/global.css">
+        <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
         <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
         <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
@@ -90,11 +90,11 @@
         <!-- <script src="lib/ft/fastclick.js"></script> -->
 
         <!--
-  * cordova.js is a phantom lib for "Cordova HTML5 web app," it does nothing in a "Standard HTML5 web app"
-  * Seeing a "Failed to load resource: net::ERR_FILE_NOT_FOUND" message caused by this "cordova.js" script?
-  * The cordova.js script is required if you convert your "Standard HTML5" project into a "Cordova" project.
-  * You can safely ignore the error or comment out this line if you will not be developing a Cordova app.
--->
+          * cordova.js is a phantom lib for "Cordova HTML5 web app," it does nothing in a "Standard HTML5 web app"
+          * Seeing a "Failed to load resource: net::ERR_FILE_NOT_FOUND" message caused by this "cordova.js" script?
+          * The cordova.js script is required if you convert your "Standard HTML5" project into a "Cordova" project.
+          * You can safely ignore the error or comment out this line if you will not be developing a Cordova app.
+        -->
         <script src="cordova.js" id="xdkJScordova_"></script>
 
         <script src="js/app.js"></script>
@@ -116,6 +116,8 @@
         <script type="application/javascript" src="js/cargo/functions.js"></script>
         <script type="application/javascript" src="js/dispositivos/functions.js"></script>
         <script type="application/javascript" src="js/vagas/functions.js"></script>
+        <script type="application/javascript" src="js/configGlobal/functions.js"></script>
+        <script type="application/javascript" src="js/progressao/functions.js"></script>
 
         <script src="js/idle.js"></script>
 
@@ -135,6 +137,7 @@
         <script type="application/javascript" src="sidebar/js/swipe-hammer.js"></script>
         <script type="application/javascript" src="sidebar/js/sidebar.js"></script>
         <script type="application/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
     </head>
 
@@ -350,7 +353,7 @@
                                     <span class="uib-caption">Vagas</span>
                                 </a>
                                 <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_84 d-margins btnMenuStyleCustom media-button-text-bottom" data-uib="media/graphic_button"
-                                data-ver="0" id="btnProgressaoActivityMain">
+                                data-ver="0" id="btnProgressaoActivityMain" href="#">
                                     <img src="interface/UI/progressao/UI_Progressao.png">
                                     <span class="uib-caption">Progressão</span>
                                 </a>
@@ -385,10 +388,14 @@
                     <div class="grid grid-pad urow uib_row_3 row-height-3" data-uib="layout/row" data-ver="0">
                         <div class="col uib_col_7 col-0_12-12" data-uib="layout/col" data-ver="0">
                             <div class="widget-container content-area vertical-col">
-                                <label class="checkbox checkbox-padding-left widget uib_w_50 d-margins" data-uib="twitter%20bootstrap/checkbox" data-ver="1" style="display: none;">
-                                    <input type="checkbox" style="display: none;">Desconectar-se automaticamente</label>
-                                <button class="btn widget uib_w_49 d-margins btn-lg btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnDispositivosConfig"><i class="glyphicon glyphicon-phone button-icon-left" data-position="left"></i>Dispositivos</button>
-                                <button class="btn widget uib_w_72 d-margins btn-lg btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnTemasConfig"><i class="glyphicon glyphicon-tint button-icon-left" data-position="left"></i>Temas</button>
+                                <input type="checkbox" data-toggle="toggle" data-on="Desconectar após 30 min." data-off="Mantendo conexão" data-size="large" data-width="100%" id="toggleManterConfigGlobal">
+
+                                <small id="hintToggleConfigGlobal" style="text-align: right !important;">Desconecta sua sessão apenas quando há inatividade de uso.</small>
+
+                                <button class="btn widget uib_w_49 d-margins btn-lg btn-primary toggleMarginStyleCustom hidden" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnDispositivosConfig"><i class="glyphicon glyphicon-phone button-icon-left" data-position="left"></i>Dispositivos</button>
+                                
+                                <!-- REMOVER CLASSE DE MARGEM APÓS IMPLEMENTAR MÓDULO DE DISPOSITIVOS -->
+                                <button class="btn widget uib_w_72 d-margins btn-lg btn-primary toggleMarginStyleCustom" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnTemasConfig"><i class="glyphicon glyphicon-tint button-icon-left" data-position="left"></i>Temas</button>
 
                                 <button class="btn widget uib_w_48 d-margins btn-lg btn-danger" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnSairConfig"><i class="glyphicon glyphicon-log-out button-icon-left" data-position="left"></i>Sair</button><span class="uib_shim"></span>
                             </div>
@@ -582,7 +589,8 @@
                                     <div class="widget-container left-receptacle"></div>
                                     <div class="widget-container right-receptacle"></div>
                                     <div class="text-container">
-                                        <p><strong>Cargo Atual:</strong> Administrador de Banco de Dados</p>
+                                        <p><strong>Cargo Atual:</strong>  <span class="textoCargoAtual"></span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -628,7 +636,8 @@
                                     <div class="widget-container left-receptacle"></div>
                                     <div class="widget-container right-receptacle"></div>
                                     <div class="text-container">
-                                        <p><strong>Proximo Cargo:</strong>&nbsp;Gerente de Desenvolvimento</p>
+                                        <p><strong>Proximo Cargo:</strong>  <span class="textoCargoSup"></span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -636,7 +645,8 @@
                         <div class="col uib_col_18 single-col" data-uib="layout/col" data-ver="0">
                             <div class="widget-container content-area vertical-col">
                                 <div class="progress full-width-widget widget uib_w_99 d-margins progress-striped" data-uib="twitter%20bootstrap/progress_bar" data-ver="1" id="pbProgresso">
-                                    <div class="progress-bar progress-bar-info" style="width: 71%;">71%</div>
+                                    <div class="progress-bar progress-bar-info progressoBarProgressao" style="width: 0%;"><span class="textoProgressoBar"></span>
+                                    </div>
                                 </div>
                                 <div class="panel widget uib_w_90 panel-primary panel-collapse" data-uib="twitter%20bootstrap/collapsible" data-ver="1">
                                     <div class="panel-heading panel-collapse">
@@ -670,6 +680,9 @@
 
                     </div>
                 </div>
+                
+                <div class="upage-content ac0 content-area vertical-col left erroProgressao"><div class="alert no_wrap widget uib_w_56 d-margins alert-warning" data-uib="twitter%20bootstrap/alert hidden" data-ver="1" style="margin-top:60px;"><i class="glyphicon glyphicon-warning-sign"></i> Você não possui um cargo associado ao seu usuário.</div></div>
+                
             </div>
         </div>
         <div class="upage hidden" id="treinamentos">

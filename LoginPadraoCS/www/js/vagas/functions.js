@@ -1,6 +1,6 @@
 function listaVagas(vagas){
     $("#lvVagas").html(" ");
-    if(Object.keys(vagas).length > 0){
+    if(Object.keys(vagas).length > 0 && vagas.result != false){
         for(var i=0; i < Object.keys(vagas).length; i++){
             
                         
@@ -12,8 +12,16 @@ function listaVagas(vagas){
         $(".uib_w_63").remove();
         activate_page("#vagas");
         
+    }else if(vagas.result == false){
+        
+        var itemVaga = "<div class='alert no_wrap widget uib_w_56 d-margins alert-warning' data-uib='twitter%20bootstrap/alert' data-ver='1'><i class='glyphicon glyphicon-warning-sign'></i> Nenhuma vaga disponível.</div>"
+        
+        $("#lvVagas").append(itemVaga);
+        
+        $(".uib_w_63").remove();
+        activate_page("#vagas");
     }else{
-        navigator.notification.alert("Erro na requisição, verifique sua internet e tente novamente. Se o problema persistir contate o suporte.");
+        navigator.notification.alert("Erro na requisição, verifique sua internet e tente novamente. Se o problema persistir contate o suporte.", null, "Erro");
     }
 }
 

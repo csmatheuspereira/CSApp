@@ -132,7 +132,7 @@ function geraData(separador,posicao){
     
     var today = new Date();
     var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
+    var mm = today.getMonth()+1;
     var yyyy = today.getFullYear();
     
     if(dd<10){
@@ -155,9 +155,9 @@ function geraData(separador,posicao){
 function selecionaLogo(cliente){
     
     if(cliente == "ARALCO"){
-        $('.customLogo').attr('src', 'interface/Logo/aralco.png')
+        $('.customLogo').attr('src', 'interface/Logo/aralco.png');
     }else{
-        $('.customLogo').attr('src', 'interface/Logo.png')
+        $('.customLogo').attr('src', 'interface/Logo.png');
     }
     
 }
@@ -274,4 +274,19 @@ function sair(){
     } 
     
     
+}
+
+function autoLogin(){
+    if (localStorage.getItem("toggleManterConfigGlobal") == "false" &&
+        localStorage.getItem("login") != null &&
+        localStorage.getItem("login") != null) {
+
+        var dispUUID = device.uuid;
+        var dispNome = device.manufacturer +" "+ device.model;    
+        var dispToken = "";
+        
+        var values = {'acao':'login','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'DispUUID':dispUUID,'DispNome':dispNome,'DispToken':dispToken,'dataClique':badgeNovasVagas()};
+                        
+        webService(values, "#retorno", loginMainPage);            
+    }
 }

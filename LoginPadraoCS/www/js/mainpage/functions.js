@@ -29,12 +29,15 @@ function loginMainPage(json){
                    // dump(values);
                     webService(values, '#retorno', autoLogout);
                     
+                    localStorage.setItem("toggleManterConfigGlobal", true);
+                    
                 }else{
                     
                     var values = {'acao':'configuracoes','config':'autoLogout','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'FlagSenha':flagSenha,'dispUUID':device.uuid,'autoLogout':0};
                     
                     webService(values, '#retorno', autoLogout);
                     
+                    localStorage.setItem("toggleManterConfigGlobal", false);                    
                 }
                 
             }, "Atenção", ["Sim", "Não"]);
@@ -86,7 +89,7 @@ function autoLogout(json){
     
     if(json.result == false){
        
-        alert("Erro ao salvar o autoLogout.");        
+        alert("Erro ao salvar sua preferência.");        
     }
     
 }

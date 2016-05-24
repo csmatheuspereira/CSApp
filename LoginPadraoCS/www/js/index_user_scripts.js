@@ -384,6 +384,38 @@
          return false;
     });
     
+        /* graphic button  #btnTreinamentos */
+    $(document).on("click", "#btnTreinamentos", function(evt)
+    {
+         /*global activate_page */
+         activate_page("#treinamentos"); 
+         return false;
+    });
+    
+        /* button  #btnVoltarTreinamentos */
+    $(document).on("click", "#btnVoltarTreinamentos", function(evt)
+    {
+         /*global activate_page */
+         activate_page("#activitymain"); 
+         return false;
+    });
+    
+        /* button  #btnVoltarTreinamento */
+    $(document).on("click", "#btnVoltarTreinamento", function(evt)
+    {
+         /*global activate_page */
+         activate_page("#treinamentos"); 
+         return false;
+    });
+    
+        /* listitem  #lvItemTreinamentos */
+    $(document).on("click", "#lvItemTreinamentos", function(evt)
+    {
+         /*global activate_page */
+         activate_page("#treinamento"); 
+         return false;
+    });
+    
     }       
     
     

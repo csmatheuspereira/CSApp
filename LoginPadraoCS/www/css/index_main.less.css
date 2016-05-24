@@ -1166,3 +1166,14 @@ label:empty {
   height: 80px !important;
   margin-bottom: 0px !important;
 }
+@media all {
+  .btnWidth {
+    -webkit-flex: 1 1 auto !important;
+    -moz-flex: 1 1 auto !important;
+    -ms-flex: 1 1 auto !important;
+    -o-flex: 1 1 auto !important;
+    flex: 1 1 auto !important;
+    width: 100%;
+    max-width: 100%;
+  }
+}

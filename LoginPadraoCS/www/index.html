@@ -115,6 +115,7 @@
         <script type="application/javascript" src="js/cargo/functions.js"></script>
         <script type="application/javascript" src="js/dispositivos/functions.js"></script>
         <script type="application/javascript" src="js/vagas/functions.js"></script>
+        <script type="application/javascript" src="js/progressao/functions.js"></script>
 
         <script src="js/idle.js"></script>
 
@@ -352,7 +353,7 @@
                                     <span class="uib-caption">Vagas</span>
                                 </a>
                                 <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_84 d-margins btnMenuStyleCustom media-button-text-bottom" data-uib="media/graphic_button"
-                                data-ver="0" id="btnProgressaoActivityMain">
+                                data-ver="0" id="btnProgressaoActivityMain" href="#">
                                     <img src="interface/UI/progressao/UI_Progressao.png">
                                     <span class="uib-caption">Progressão</span>
                                 </a>
@@ -578,7 +579,8 @@
                                     <div class="widget-container left-receptacle"></div>
                                     <div class="widget-container right-receptacle"></div>
                                     <div class="text-container">
-                                        <p><strong>Cargo Atual:</strong> Administrador de Banco de Dados</p>
+                                        <p><strong>Cargo Atual:</strong>  <span class="textoCargoAtual"></span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -624,7 +626,8 @@
                                     <div class="widget-container left-receptacle"></div>
                                     <div class="widget-container right-receptacle"></div>
                                     <div class="text-container">
-                                        <p><strong>Proximo Cargo:</strong>&nbsp;Gerente de Desenvolvimento</p>
+                                        <p><strong>Proximo Cargo:</strong>  <span class="textoCargoSup"></span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -632,7 +635,8 @@
                         <div class="col uib_col_18 single-col" data-uib="layout/col" data-ver="0">
                             <div class="widget-container content-area vertical-col">
                                 <div class="progress full-width-widget widget uib_w_99 d-margins progress-striped" data-uib="twitter%20bootstrap/progress_bar" data-ver="1" id="pbProgresso">
-                                    <div class="progress-bar progress-bar-info" style="width: 71%;">71%</div>
+                                    <div class="progress-bar progress-bar-info progressoBarProgressao" style="width: 0%;"><span class="textoProgressoBar"></span>
+                                    </div>
                                 </div>
                                 <div class="panel widget uib_w_90 panel-primary panel-collapse" data-uib="twitter%20bootstrap/collapsible" data-ver="1">
                                     <div class="panel-heading panel-collapse">

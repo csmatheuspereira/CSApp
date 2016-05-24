@@ -371,9 +371,19 @@
         /* graphic button  #btnProgressaoActivityMain */
     $(document).on("click", "#btnProgressaoActivityMain", function(evt)
     {
-        activate_page("#progressao");
-        //navigator.notification.alert("Em desenvolvimento", null, "Atenção"); 
-        return false;
+        
+        if (checaWS()){
+        var values = {'acao':'progressao', 
+                      'Login':localStorage.getItem("login"),
+                      'Senha':localStorage.getItem("senha"),
+                      'FlagSenha':flagSenha,
+                      'idUsuario':localStorage.getItem("idUsuario")
+                     };
+            
+            webService(values,'#retorno',progressao);
+        }
+        
+       // activate_page("#progressao");
     });
     
         /* button  #btnVoltarProgressao */
@@ -381,7 +391,6 @@
     {
          /*global activate_page */
          activate_page("#activitymain"); 
-         return false;
     });
     
     }       

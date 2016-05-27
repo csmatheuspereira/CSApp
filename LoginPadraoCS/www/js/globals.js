@@ -277,7 +277,7 @@ function sair(){
 }
 
 function autoLogin(){
-    if (localStorage.getItem("toggleManterConfigGlobal") == "true" &&
+    if (localStorage.getItem("toggleManterConfigGlobal") == "false" &&
         localStorage.getItem("login") != null &&
         localStorage.getItem("login") != null) {
 

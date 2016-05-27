@@ -203,15 +203,23 @@
      });    
         
      /* button  #btnConfigActivityMain */
-     $(document).on("click", "#btnConfigActivityMain", function(evt) {         
+     $(document).on("click", "#btnConfigActivityMain", function(evt) {                  
+         
          if (localStorage.getItem("toggleManterConfigGlobal") == "true") {
-             $('#toggleManterConfigGlobal').bootstrapToggle('on');
-             $("#hintToggleConfigGlobal").removeClass("hidden");        
+             
+             $('#checkManter').removeClass("glyphicon glyphicon-unchecked");
+             $('#checkManter').addClass("glyphicon glyphicon-check");             
+             
+             $("#hintToggleConfigGlobal").addClass("hidden");      
          } else {
-             $('#toggleManterConfigGlobal').bootstrapToggle('off');
-             $("#hintToggleConfigGlobal").addClass("hidden");                
+             
+             $('#checkManter').removeClass("glyphicon glyphicon-check");                          
+             $('#checkManter').addClass("glyphicon glyphicon-unchecked");             
+             
+             $("#hintToggleConfigGlobal").removeClass("hidden");                  
          }        
         
+
          activate_page("#configGlobal"); 
      });
          
@@ -366,7 +374,39 @@
     
     
     autoLogin();
- }       
+     /* button  #btnToggleManter */
+    $(document).on("click", "#btnToggleManter", function(evt)
+    {
+        var alValue;
+        
+         if (localStorage.getItem("toggleManterConfigGlobal") == "true"){
+             $("#checkManter").removeClass("glyphicon glyphicon-check");
+             $("#checkManter").addClass("glyphicon glyphicon-unchecked");
+             
+             alValue = 0;
+             
+             localStorage.setItem("toggleManterConfigGlobal", false);
+             
+             $("#hintToggleConfigGlobal").removeClass("hidden");
+         } else {
+             $("#checkManter").removeClass("glyphicon glyphicon-unchecked");             
+             $("#checkManter").addClass("glyphicon glyphicon-check");             
+             
+             localStorage.setItem("toggleManterConfigGlobal", true);
+             
+             alValue = 1;
+             
+             $("#hintToggleConfigGlobal").addClass("hidden");
+         }
+         
+        var values = {'acao':'configuracoes','config':'autoLogout','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'FlagSenha':flagSenha,'dispUUID':device.uuid,'autoLogout':alValue};
+
+        webService(values, '#retorno', autoLogout);
+        
+        return false;
+    });
+    
+    }       
     
         
     

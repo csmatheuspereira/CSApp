@@ -78,7 +78,7 @@
         <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
         <link rel="stylesheet" type="text/css" href="css/global/global.css">
-        <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+        <link href="css/bootstrap-toggle.min.css" rel="stylesheet">
 
         <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
         <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
@@ -137,7 +137,7 @@
         <script type="application/javascript" src="sidebar/js/swipe-hammer.js"></script>
         <script type="application/javascript" src="sidebar/js/sidebar.js"></script>
         <script type="application/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+        <script src="js/bootstrap-toggle.min.js"></script>
 
     </head>
 
@@ -381,15 +381,15 @@
                 <div class="upage-content ac0 content-area vertical-col left" id="page_55_68">
                     <div class="grid grid-pad urow uib_row_3 row-height-3" data-uib="layout/row" data-ver="0">
                         <div class="col uib_col_7 col-0_12-12" data-uib="layout/col" data-ver="0">
-                            <div class="widget-container content-area vertical-col">
-                                <input type="checkbox" data-toggle="toggle" data-on="Desconectar após 30 min." data-off="Mantendo conexão" data-size="large" data-width="100%" id="toggleManterConfigGlobal">
+                            <div class="widget-container content-area vertical-col">                                                    
+
+                                <button class="btn widget uib_w_49 d-margins btn-lg btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnToggleManter"><i id="checkManter" class="glyphicon glyphicon-unchecked button-icon-left" data-position="left"></i>Manter conexão</button>
 
                                 <small id="hintToggleConfigGlobal" style="text-align: right !important;">Desconecta sua sessão apenas quando há inatividade de uso.</small>
-
-                                <button class="btn widget uib_w_49 d-margins btn-lg btn-primary toggleMarginStyleCustom hidden" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnDispositivosConfig"><i class="glyphicon glyphicon-phone button-icon-left" data-position="left"></i>Dispositivos</button>
                                 
-                                <!-- REMOVER CLASSE DE MARGEM APÓS IMPLEMENTAR MÓDULO DE DISPOSITIVOS -->
-                                <button class="btn widget uib_w_72 d-margins btn-lg btn-primary toggleMarginStyleCustom" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnTemasConfig"><i class="glyphicon glyphicon-tint button-icon-left" data-position="left"></i>Temas</button>
+                                <button class="btn widget uib_w_49 d-margins btn-lg btn-primary toggleMarginStyleCustom hidden" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnDispositivosConfig"><i class="glyphicon glyphicon-phone button-icon-left" data-position="left"></i>Dispositivos</button>
+
+                                <button class="btn widget uib_w_72 d-margins btn-lg btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnTemasConfig"><i class="glyphicon glyphicon-tint button-icon-left" data-position="left"></i>Temas</button>
 
                                 <button class="btn widget uib_w_48 d-margins btn-lg btn-danger" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnSairConfig"><i class="glyphicon glyphicon-log-out button-icon-left" data-position="left"></i>Sair</button><span class="uib_shim"></span>
                             </div>
@@ -674,9 +674,11 @@
 
                     </div>
                 </div>
-                
-                <div class="upage-content ac0 content-area vertical-col left erroProgressao"><div class="alert no_wrap widget uib_w_56 d-margins alert-warning" data-uib="twitter%20bootstrap/alert hidden" data-ver="1" style="margin-top:60px;"><i class="glyphicon glyphicon-warning-sign"></i> Você não possui um cargo associado ao seu usuário.</div></div>
-                
+
+                <div class="upage-content ac0 content-area vertical-col left erroProgressao" id="page_77_69">
+                    <div class="alert no_wrap widget uib_w_56 d-margins alert-warning" data-uib="twitter%20bootstrap/alert hidden" data-ver="1" style="margin-top:60px;"><i class="glyphicon glyphicon-warning-sign"></i> Você não possui um cargo associado ao seu usuário.</div>
+                </div>
+
             </div>
         </div>
 

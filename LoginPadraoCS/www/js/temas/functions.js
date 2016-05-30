@@ -4,10 +4,19 @@ function definirTema(){
     
     if(localStorage.getItem("temaAtual") === null && localStorage.getItem("temaAnterior") === null){
         localStorage.setItem("temaAtual", "vermelho");
+        
         $(".header-bg").addClass(localStorage.getItem("temaAtual"));
+        
         $(".btn-primary").addClass(localStorage.getItem("temaAtual"));
+        
+        $(".panel-collapse").addClass(localStorage.getItem("temaAtual"));
+        
+        $(".progress-bar").addClass(localStorage.getItem("temaAtual"));
+     
         $("."+selecionaCheck(localStorage.getItem("temaAtual"))).removeClass("hidden");
+                
         selecionaFundos(localStorage.getItem("temaAtual"));
+        
     }else{
         $(".header-bg").addClass(localStorage.getItem("temaAtual"));
 
@@ -18,10 +27,8 @@ function definirTema(){
         $(".progress-bar").addClass(localStorage.getItem("temaAtual"));
         
         $("."+selecionaCheck(localStorage.getItem("temaAtual"))).removeClass("hidden");
-        selecionaFundos(localStorage.getItem("temaAtual"));
-        
-        
-
+       
+        selecionaFundos(localStorage.getItem("temaAtual"));                
            
     }
     

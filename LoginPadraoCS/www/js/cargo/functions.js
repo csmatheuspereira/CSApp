@@ -9,10 +9,17 @@ function chamaCargo(json){
                         
         
         if (cargosDec.length > 0){
-            $("#pnMainCargo").append(cargosDec);        
+            $("#pnMainCargo").append(cargosDec);
+            $("#pnMainCargo").removeClass("hidden");
+            $(".uib_row_7").addClass("hidden");
+            
                   
         } else {            
-            $("#pnMainCargo").append("<div class='alert no_wrap widget uib_w_56 d-margins alert-warning' data-uib='twitter%20bootstrap/alert' data-ver='1'><i class='glyphicon glyphicon-warning-sign'></i> Você não possui um cargo associado ao seu usuário.</div>");               
+            
+            $("#pnMainCargo").addClass("hidden");
+            $(".uib_row_7").removeClass("hidden");
+            
+            //$("#pnMainCargo").append("<div class='alert no_wrap widget uib_w_56 d-margins alert-warning' data-uib='twitter%20bootstrap/alert' data-ver='1'><i class='glyphicon glyphicon-warning-sign'></i> Você não possui um cargo associado ao seu usuário.</div>");               
         }
         
         activate_page("#cargo");

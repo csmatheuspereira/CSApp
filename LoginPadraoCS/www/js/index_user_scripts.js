@@ -23,7 +23,7 @@
      $(function() {
 
         var awayCallback = function() {              
-            if ((localStorage.getItem("login").length > 0) && (localStorage.getItem("toggleManterConfigGlobal") == "true")) {
+            if ((localStorage.getItem("login").length > 0) && (localStorage.getItem("toggleManterConfigGlobal") == "false")) {
                  var values = {'acao':'logout','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'FlagSenha':flagSenha,'dispUUID':device.uuid};
 
                 if (checaWS()){

@@ -25,28 +25,100 @@ function checaWS(){
 }
 
 function webService(values, status, callback){
-    if(verificaConexao() && checkOnline(urlWS)){
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: urlWS,
-            data: values,
-            success: function(json) {
-                callback(json);
-            },
-            beforeSend: function() {
-                $("#loader").removeClass("hidden");
-            }
-        })
-        .done(function() {
-            $("#loader").addClass("hidden");
-        })
-        .fail(function(jqXHR, textStatus) {
-            $("#loader").addClass("hidden");
-            alert( "Request failed: " + textStatus );
-        });
-    }
+    if(verificaConexao(true) && checkOnline(urlWS)){    
+        var sucesso;
+        
+        var conn = $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: urlWS,
+                        data: values,
+                        success: function(json) {
+                            callback(json);
+                        },
+                        beforeSend: function() {
+                            $("#loader").removeClass("hidden");                                           
+                            
+                            sucesso = false;
+                            
+                            setTimeout(function(){
+                                if (!sucesso) {
+                                    $("#loader").addClass("hidden");
+                                    navigator.notification.alert("O tempo da requisição expirou, tente novamente. Se o problema persistir entre em contato com o suporte.", null,"Erro");
+                                    conn.abort();                                
+                                }
+                            }, 20000);
+                        }
+                    })
+                    .done(function() {
+                        $("#loader").addClass("hidden");
+                        sucesso = true;
+                    })
+                    .fail(function(jqXHR, textStatus) {
+                        // Neste caso, sucesso recebe verdadeiro pois o método Fail trata seu próprio erro
+                        sucesso = true;
+                        
+                        $("#loader").addClass("hidden");
+                        navigator.notification.alert("Ocorreu um erro desconhecido. Mensagem de erro: " + textStatus + ". Informe este erro ao suporte.", null,"Erro");       
+                    });                
+    }    
 }
+
+
+function checkOnline(url){
+    if(localStorage.getItem("verificaUrlOnline") == "S"){        
+        var http = new XMLHttpRequest();
+        
+        setTimeout(function(){
+            if (resultado == undefined) {
+                $("#loader").addClass("hidden");
+                
+                navigator.notification.alert("A URL de Serviço não pode ser contactada, tente novamente mais tarde. Se o problema persistir entre em contato com o suporte.", null,"Erro");
+                
+                http.abort();
+                
+                return false;
+            }
+        }, 20000);
+        
+        http.open('HEAD', url, false);
+        http.send();
+        var resultado = http.status != 404;
+
+        if(resultado){
+            $("#loader").addClass("hidden");
+            localStorage.setItem("verificaUrlOnline", "N");
+            return true;
+        }else{
+            $("#loader").addClass("hidden");
+            navigator.notification.alert("O endereço está fora do ar ou URL de acesso digitado incorretamente.", null,"Erro");            
+            activate_page("#configuracoes");
+            return false;
+        }
+        
+    }else{
+        return true;
+    }
+    
+}
+
+
+function verificaConexao(ws){
+    if (ws == undefined) { ws = false;}
+    
+    if (ws) { $("#loader").removeClass("hidden"); }
+    
+    if(navigator.connection.type == "none")
+    {
+       $('#internet').removeClass('hidden');
+        return false;
+    }else{
+        $('#internet').addClass('hidden');
+        return true;
+    }
+};
+
+
 
 function checaCampo(values) {
 
@@ -198,42 +270,6 @@ $(function() {
 
 })(window, jQuery);
 
-function verificaConexao(){
-    if(navigator.connection.type == "none")
-    {
-       $('#internet').removeClass('hidden');
-        return false;
-    }else{
-        $('#internet').addClass('hidden');
-        return true;
-    }
-};
-
-function checkOnline(url){
-    if(localStorage.getItem("verificaUrlOnline") == "S"){
-        $("#loader").removeClass("hidden");
-        var http = new XMLHttpRequest();
-        http.open('HEAD', url, false);
-        http.send();
-        var resultado = http.status!=404;
-
-        if(resultado){
-            $("#loader").addClass("hidden");
-            localStorage.setItem("verificaUrlOnline", "N");
-            return true;
-        }else{
-            $("#loader").addClass("hidden");
-            navigator.notification.alert("O endereço está fora do ar ou URL de acesso digitado incorretamente.", null,"Erro");
-            document.getElementById("txtURLConfiguracoes").value = localStorage.getItem("urlWS");
-            activate_page("#configuracoes");
-            return false;
-        }
-        
-    }else{
-        return true;
-    }
-    
-}
 
 function sair(){    
     
@@ -277,7 +313,7 @@ function sair(){
 }
 
 function autoLogin(){
-    if (localStorage.getItem("toggleManterConfigGlobal") == "true" &&
+    if (localStorage.getItem("toggleManterConfigGlobal") == "false" &&
         localStorage.getItem("login") != null &&
         localStorage.getItem("login") != null) {
 

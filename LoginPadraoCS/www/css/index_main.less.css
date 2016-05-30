@@ -468,7 +468,7 @@ label:empty {
 }
 @media all {
   .header-bg {
-    background-color: #e74c3c;
+    background-color: #e74e3d;
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: scroll;
@@ -1179,5 +1179,28 @@ label:empty {
   }
   .toggleMarginStyleCustom {
     margin-top: 10px;
+  }
+}
+@media all and (min-width: 720px) {
+  .row-height-7 > .col > .content-area {
+    min-height: 100px;
+  }
+}
+.uib_row_7:not(.cright) > .col {
+  padding-right: 20px;
+}
+.uib_row_7.cright > .col {
+  padding-left: 20px;
+}
+@media all {
+  .col-0_12-12 {
+    width: auto;
+    float: none !important;
+  }
+  .urow:not(.cright) > .col-0_12-12 {
+    padding-right: 0px !important;
+  }
+  .urow.cright > .col-0_12-12 {
+    padding-left: 0px !important;
   }
 }

@@ -122,6 +122,8 @@
 }
 .text-listv{
     text-align: left;
+    word-wrap: break-word;
+
 }
 
 /*  Fim CSS Tela Dispositivos  */
@@ -137,6 +139,19 @@
 }
 
 /*  Fim CSS Tela Vagas*/
+
+
+/*  Tela Treinamentos */
+
+
+.panel-corpo{
+    padding: 8px;
+}
+
+
+/*  Fim tela treinamentos*/
+
+
 
 .ripple{
     overflow:hidden;

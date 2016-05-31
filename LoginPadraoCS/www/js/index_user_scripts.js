@@ -7,29 +7,29 @@
  */
  function register_event_handlers()
  {
-    var dispToken = "";
+     var dispToken = "";
     
-    // Funções que ocorrem ao abrir o app
-    verificaConexao();
-    definirTema();
-    listaUsuariosLocais();
-
-    if (!checaWS()) {
-         navigator.notification.alert("Defina a URL de serviço", null, "Atenção");
+     // Funções que ocorrem ao abrir o app
+     verificaConexao();
+     definirTema();
+     listaUsuariosLocais();      
+     
+     if (!checaWS()) {
+         navigator.notification.alert(err_conn_unset, null, "Atenção");
          activate_page("#configuracoes");
      };             
      
      $(function() {
 
         var awayCallback = function() {              
-            if (localStorage.getItem("login").length > 0) {
+            if ((localStorage.getItem("login").length > 0) && (localStorage.getItem("toggleManterConfigGlobal") == "false")) {
                  var values = {'acao':'logout','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'FlagSenha':flagSenha,'dispUUID':device.uuid};
 
-                if (checaWS()) {
+                if (checaWS()){
                     webService(values, "#retorno", logout);
                     $(".uib_w_39").modal("toggle");
                 } else {
-                    navigator.notification.alert("Defina a URL de serviço!", null, "Atenção");
+                    navigator.notification.alert(err_conn_unset, null, "Atenção");
                     activate_page("#configuracoes");
                 }
             }
@@ -41,26 +41,24 @@
         }).start();
 
         idle.setAwayTimeout(1800000);
-    }); // Detectar inatividade do usuário e desconectá-lo em 30 minutos               
-         
-     
+    }); // Detectar inatividade do usuário e desconectá-lo em 30 minutos                             
      
      if(device.platform.toLowerCase() == "android"){
-        $("#loader").removeClass("hidden");
-        var push = PushNotification.init({ 
-            "android": {
-                "senderID": "788790867910"
-            },
-            "ios": {
-                "senderID": "788790867910", 
-                "alert": "true", 
-                "badge": "true", 
-                "sound": "true",
-                "ecb":"onNotificationAPNS",
-                "gcmSandbox": "true"
-            }, 
-            "windows": {} 
-        });
+         $("#loader").removeClass("hidden");
+         var push = PushNotification.init({ 
+             "android": {
+                 "senderID": "788790867910"
+             },
+             "ios": {
+                 "senderID": "788790867910", 
+                 "alert": "true", 
+                 "badge": "true", 
+                 "sound": "true",
+                 "ecb":"onNotificationAPNS",
+                 "gcmSandbox": "true"
+             }, 
+             "windows": { } 
+         });
      
 
          push.on('registration', function(data) {
@@ -68,7 +66,7 @@
              //$("#gcm_id").html(data.registrationId);
              $("#loader").addClass("hidden");
              dispToken = data.registrationId;
-            // navigator.notification.alert(dispToken);
+             // navigator.notification.alert(dispToken);
          });
 
          push.on('notification', function(data) {
@@ -86,221 +84,201 @@
          });
 
      } // Push GCM DON'T TOUCH THIS BEACH
-     
-     
-     
+               
      
      /* button  #btnNovo */
-    $(document).on("click", "#btnNovoMainPage", function(evt)
-    {        
-        activate_page("#novousuario"); 
-    });
+     $(document).on("click", "#btnNovoMainPage", function(evt) {        
+         activate_page("#novousuario"); 
+     });
     
-        /* button  #btnVoltarNovoUsuario */
-    $(document).on("click", "#btnVoltarNovoUsuario", function(evt)
-    {
+     /* button  #btnVoltarNovoUsuario */
+     $(document).on("click", "#btnVoltarNovoUsuario", function(evt) {
          listaUsuariosLocais();
         
          activate_page("#mainpage"); 
-    });
+     });
     
-        /* button  #btnLoginNovoUsuario */
-    $(document).on("click", "#btnLoginNovoUsuario", function(evt)
-    {
-        var dispUUID = device.uuid;
-        var dispNome = device.manufacturer +" "+ device.model;
+     /* button  #btnLoginNovoUsuario */
+     $(document).on("click", "#btnLoginNovoUsuario", function(evt) {
+         var dispUUID = device.uuid;
+         var dispNome = device.manufacturer +" "+ device.model;
         
-        if (checaWS()) {
+         if (checaWS()) {
             
-            var valuesCheca = [ $("#txtNomeNovoUsuario").val(), $("#txtSenhaNovoUsuario").val() ];
+             var valuesCheca = [ $("#txtNomeNovoUsuario").val(), $("#txtSenhaNovoUsuario").val() ];
             
-            localStorage.setItem("login", $("#txtNomeNovoUsuario").val());
-            localStorage.setItem("senha", Cript($("#txtSenhaNovoUsuario").val()));
+             localStorage.setItem("login", $("#txtNomeNovoUsuario").val());
+             localStorage.setItem("senha", Cript($("#txtSenhaNovoUsuario").val()));
             
-            var values = {'acao':'login','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'DispUUID':dispUUID,'DispNome':dispNome,'DispToken':dispToken,'dataClique':badgeNovasVagas()};
+             var values = {'acao':'login','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'DispUUID':dispUUID,'DispNome':dispNome,'DispToken':dispToken,'dataClique':badgeNovasVagas()};
 
-            if(!checaCampo(valuesCheca)){
-                webService(values, "#retorno", login);
-            } else {
-                navigator.notification.alert("Por favor, preencha todos os campos", null, "Erro");
-            }
-        } else {
-            navigator.notification.alert("Defina a URL de serviço!", null, "Atenção");
-            activate_page("#configuracoes");
-        }            
-    });
+             if(!checaCampo(valuesCheca)){
+                 webService(values, "#retorno", login);
+             } else {
+                 navigator.notification.alert("Por favor, preencha todos os campos", null, "Erro");
+             }
+         } else {
+             navigator.notification.alert(err_conn_unset, null, "Atenção");
+             activate_page("#configuracoes");
+         }            
+     });
         
-        /* button  #btnConfigMainPage */
-    $(document).on("click", "#btnConfigMainPage", function(evt)
-    {                                        
-        // Define o index do combo para o último selecionado
-        document.getElementById("cmbURLConfiguracoes").selectedIndex = localStorage.getItem("indexCmbUrl");
+     /* button  #btnConfigMainPage */
+     $(document).on("click", "#btnConfigMainPage", function(evt) {                                        
+         // Define o index do combo para o último selecionado
+         document.getElementById("cmbURLConfiguracoes").selectedIndex = localStorage.getItem("indexCmbUrl");
                     
-        
-        activate_page("#configuracoes"); 
-        
-    });
+         activate_page("#configuracoes");         
+     });
 
-        /* button  #btnVoltarConfiguracoes */
-    $(document).on("click", "#btnVoltarConfiguracoes", function(evt)
-    {
+     /* button  #btnVoltarConfiguracoes */
+     $(document).on("click", "#btnVoltarConfiguracoes", function(evt) {
          /*global activate_page */
          activate_page("#mainpage");
-    });
+     });
             
-        /* button  #btnSalvarConfiguracoes */
-    $(document).on("click", "#btnSalvarConfiguracoes", function(evt)
-    {    
-        // Evita duplicação de checagem da URL
-        localStorage.setItem("verificaUrlOnline", "S");
+     /* button  #btnSalvarConfiguracoes */
+     $(document).on("click", "#btnSalvarConfiguracoes", function(evt) {    
+         // Evita duplicação de checagem da URL
+         localStorage.setItem("verificaUrlOnline", "S");
         
-        // Coloca no localStorage a URL do campo selecionado
-        localStorage.setItem("urlWS", $("#cmbURLConfiguracoes").val());
-                 
+         // Coloca no localStorage a URL do campo selecionado
+         localStorage.setItem("urlWS", $("#cmbURLConfiguracoes").val());
+                         
+         // Grava no banco de dados o último item selecionado
+         var cmbURL = document.getElementById("cmbURLConfiguracoes");        
+         localStorage.setItem("indexCmbUrl", cmbURL.selectedIndex);                
         
-        // Grava no banco de dados o último item selecionado
-        var cmbURL = document.getElementById("cmbURLConfiguracoes");        
-        localStorage.setItem("indexCmbUrl", cmbURL.selectedIndex);        
-        
-        
-        activate_page("#mainpage");
+         activate_page("#mainpage");
     });              
     
-        /* button  #btnLoginMainPage */
-    $(document).on("click", "#btnLoginMainPage", function(evt)
-    {
-        var dispUUID = device.uuid;
-        var dispNome = device.manufacturer +" "+ device.model;    
+     /* button  #btnLoginMainPage */
+     $(document).on("click", "#btnLoginMainPage", function(evt) {
+         var dispUUID = device.uuid;
+         var dispNome = device.manufacturer +" "+ device.model;    
         
-        if (checaWS()) {
+         if (checaWS()) {
             
-            var cmbText = document.getElementById("cmbUsuarioMainPage");
+             var cmbText = document.getElementById("cmbUsuarioMainPage");            
+             var valuesCheca = [ cmbText.options[cmbText.selectedIndex].text, $("#txtSenhaMainPage").val() ];
             
-            var valuesCheca = [ cmbText.options[cmbText.selectedIndex].text, $("#txtSenhaMainPage").val() ];
-            
-            localStorage.setItem("login", cmbText.options[cmbText.selectedIndex].text);
-            localStorage.setItem("senha", Cript($("#txtSenhaMainPage").val()));
+             localStorage.setItem("login", cmbText.options[cmbText.selectedIndex].text);
+             localStorage.setItem("senha", Cript($("#txtSenhaMainPage").val()));
                         
-            var values = {'acao':'login','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'DispUUID':dispUUID,'DispNome':dispNome,'DispToken':dispToken,'dataClique':badgeNovasVagas()};
+             var values = {'acao':'login','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'DispUUID':dispUUID,'DispNome':dispNome,'DispToken':dispToken,'dataClique':badgeNovasVagas()};
                         
-            if(!checaCampo(valuesCheca)){
-                webService(values, "#retorno", loginMainPage);
-            } else {
-                navigator.notification.alert("Por favor, preencha todos os campos", null, "Erro");
-            }
-        } else {
-            navigator.notification.alert("Defina a URL de serviço!", null, "Atenção");
-            activate_page("#configuracoes");
-        }         
-    });
-                 
+             if(!checaCampo(valuesCheca)){
+                 webService(values, "#retorno", loginMainPage);
+             } else {
+                 navigator.notification.alert("Por favor, preencha todos os campos", null, "Erro");
+             }
+         } else {
+             navigator.notification.alert(err_conn_unset, null, "Atenção");
+             activate_page("#configuracoes");
+         }         
+     });                 
     				       
-        /* button  #btnLimparConfiguracoes */
-    $(document).on("click", "#btnLimparConfiguracoes", function(evt)
-    {
+     /* button  #btnLimparConfiguracoes */
+     $(document).on("click", "#btnLimparConfiguracoes", function(evt) {                
         
-        
-        
-        navigator.notification.confirm("Você realmente deseja apagar todas informações deste dispositivo?", function(buttonID){
+         navigator.notification.confirm("Você realmente deseja apagar todas informações deste dispositivo?",    function(buttonID){
             
-            if(buttonID == 1){
-                localStorage.setItem("login", "");
-                localStorage.setItem("senha", "");
-                localStorage.setItem("idUsuario", "");
-                localStorage.setItem("urlWS", "");
+             if(buttonID == 1){
+                 localStorage.setItem("login", "");
+                 localStorage.setItem("senha", "");
+                 localStorage.setItem("idUsuario", "");
+                 localStorage.setItem("urlWS", "");
 
-                //localStorage.setItem("indexUsr", 0);                
+                 //localStorage.setItem("indexUsr", 0);                
 
-                dati.emptyTable("tblUsers",function(status){
-                    listaUsuariosLocais();
-                }); 
-                localStorage.removeItem("temaAtual");
-                localStorage.removeItem("temaAnterior");
-                navigator.notification.alert("Dados apagados com sucesso!", null, "Sucesso");
-            }            
-        }, "Confirmação", ["Sim", "Não"]);
-    });    
-    
-    
-        /* button  #btnConfigActivityMain */
-    $(document).on("click", "#btnConfigActivityMain", function(evt)
-    {
-         /*global activate_page */
-         activate_page("#configGlobal"); 
-    });
-     
-    
-        /* button  #btnSairConfig */
-    $(document).on("click", "#btnSairConfig", function(evt)
-    {        
-        var values = {'acao':'logout','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'FlagSenha':flagSenha,'dispUUID':device.uuid};
-
-        if (checaWS()) {
-            webService(values, "#retorno", logout);
-        } else {
-            navigator.notification.alert("Defina a URL de serviço!", null, "Atenção");
-            activate_page("#configuracoes");
-        }        
-    });
-     
-    
-        /* button  #btnVoltarConfig */
-    $(document).on("click", "#btnVoltarConfig", function(evt)
-    {
-         /*global activate_page */
-         activate_page("#activitymain"); 
-    });
-     
-    
-        /* button  #btnDispositivosConfig */
-    $(document).on("click", "#btnDispositivosConfig", function(evt)
-    {
-        if (checaWS()){
-        var values = {'acao':'configuracoes', 
-                      'config':'dispositivos',
-                      'Login':localStorage.getItem("login"),
-                      'Senha':localStorage.getItem("senha"),
-                      'FlagSenha':flagSenha,
-                      'idUsuario':localStorage.getItem("idUsuario")
-                     };
-        webService(values,'#retorno',listaDispositivos);
-        }
-    });
-     
-    
-        /* graphic button  #btnCargosActivityMain */
-    $(document).on("click", "#btnCargosActivityMain", function(evt)
-    {
-        if (checaWS()){
-            var values = {'acao':"cargo", 
-                          'Login':localStorage.getItem("login"),
-                          'Senha':localStorage.getItem("senha"),
-                          'FlagSenha':flagSenha,
-                          'idUsuario':localStorage.getItem("idUsuario")
-                         };
-            webService(values, "#retorno", chamaCargo);             
-        } else {
-            navigator.notification.alert("Defina a URL de serviço!", null, "Atenção");
-            activate_page("#configuracoes");
-        }
+                 dati.emptyTable("tblUsers",function(status){
+                     listaUsuariosLocais();
+                 }); 
+                 localStorage.removeItem("temaAtual");
+                 localStorage.removeItem("temaAnterior");
+                 navigator.notification.alert("Dados apagados com sucesso!", null, "Sucesso");
+             }            
+         }, "Confirmação", ["Sim", "Não"]);
+     });    
+        
+     /* button  #btnConfigActivityMain */
+     $(document).on("click", "#btnConfigActivityMain", function(evt) {                  
          
+         if (localStorage.getItem("toggleManterConfigGlobal") == "true") {
+             
+             $('#checkManter').removeClass("glyphicon glyphicon-unchecked");
+             $('#checkManter').addClass("glyphicon glyphicon-check");             
+             
+             $("#hintToggleConfigGlobal").addClass("hidden");      
+         } else {
+             
+             $('#checkManter').removeClass("glyphicon glyphicon-check");                          
+             $('#checkManter').addClass("glyphicon glyphicon-unchecked");             
+             
+             $("#hintToggleConfigGlobal").removeClass("hidden");                  
+         }        
+        
 
-    });
-     
-    
-        /* button  #btnVoltarCargo */
-    $(document).on("click", "#btnVoltarCargo", function(evt)
-    {
-         /*global activate_page */
+         activate_page("#configGlobal"); 
+     });
+         
+     /* button  #btnSairConfig */
+     $(document).on("click", "#btnSairConfig", function(evt) {        
+         var values = {'acao':'logout','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'FlagSenha':flagSenha,'dispUUID':device.uuid};
+
+         if (checaWS()) {
+             webService(values, "#retorno", logout);
+         } else {
+             navigator.notification.alert(err_conn_unset, null, "Atenção");
+             activate_page("#configuracoes");
+         }        
+     });
+         
+     /* button  #btnVoltarConfig */
+     $(document).on("click", "#btnVoltarConfig", function(evt) {
          activate_page("#activitymain"); 
+     });
+         
+     /* button  #btnDispositivosConfig */
+     $(document).on("click", "#btnDispositivosConfig", function(evt) {
+         if (checaWS()){
+             var values = {'acao':'configuracoes', 
+                           'config':'dispositivos',
+                           'Login':localStorage.getItem("login"),
+                           'Senha':localStorage.getItem("senha"),
+                           'FlagSenha':flagSenha,
+                           'idUsuario':localStorage.getItem("idUsuario")
+                          };
+             webService(values,'#retorno',listaDispositivos);
+        }
     });
+         
+     /* graphic button  #btnCargosActivityMain */
+     $(document).on("click", "#btnCargosActivityMain", function(evt) {
+         if (checaWS()){
+             var values = {'acao':"cargo", 
+                           'Login':localStorage.getItem("login"),
+                           'Senha':localStorage.getItem("senha"),
+                           'FlagSenha':flagSenha,
+                           'idUsuario':localStorage.getItem("idUsuario")
+                          };
+             webService(values, "#retorno", chamaCargo);             
+         } else {
+             navigator.notification.alert(err_conn_unset, null, "Atenção");
+             activate_page("#configuracoes");
+         }         
+    });
+         
+     /* button  #btnVoltarCargo */
+     $(document).on("click", "#btnVoltarCargo", function(evt) {         
+         activate_page("#activitymain"); 
+     });
     
-        /* button  #btnVoltarDispositivos */
-    $(document).on("click", "#btnVoltarDispositivos", function(evt)
-    {
+     /* button  #btnVoltarDispositivos */
+     $(document).on("click", "#btnVoltarDispositivos", function(evt) {
          /*global activate_page */
          activate_page("#configGlobal"); 
-    });
+     });
     
         /* button  #btnDeletaDisp */
     $(document).on("click", "#btnDeletaDisp", function(evt)
@@ -322,8 +300,8 @@
         var values = {'acao':'vagas', 
                       'Login':localStorage.getItem("login"),
                       'Senha':localStorage.getItem("senha"),
-                      'FlagSenha':flagSenha,
-                      'idUsuario':localStorage.getItem("idUsuario")
+                      'FlagSenha':flagSenha
+                     // 'idUsuario':localStorage.getItem("idUsuario")
                      };
             
         
@@ -371,9 +349,19 @@
         /* graphic button  #btnProgressaoActivityMain */
     $(document).on("click", "#btnProgressaoActivityMain", function(evt)
     {
-        activate_page("#progressao");
-        //navigator.notification.alert("Em desenvolvimento", null, "Atenção"); 
-        return false;
+        
+        if (checaWS()){
+        var values = {'acao':'progressao', 
+                      'Login':localStorage.getItem("login"),
+                      'Senha':localStorage.getItem("senha"),
+                      'FlagSenha':flagSenha,
+                      'idUsuario':localStorage.getItem("idUsuario")
+                     };
+            
+            webService(values,'#retorno',progressao);
+        }
+        
+       // activate_page("#progressao");
     });
     
         /* button  #btnVoltarProgressao */
@@ -381,9 +369,8 @@
     {
          /*global activate_page */
          activate_page("#activitymain"); 
-         return false;
     });
-    
+     
         /* graphic button  #btnTreinamentos */
     $(document).on("click", "#btnTreinamentos", function(evt)
     {
@@ -407,16 +394,48 @@
          activate_page("#treinamentos"); 
          return false;
     });
-    
         /* listitem  #lvItemTreinamentos */
     $(document).on("click", "#lvItemTreinamentos", function(evt)
     {
          /*global activate_page */
-         activate_page("#treinamento"); 
-         return false;
+         activate_page("#treinamento");
+	});
+    
+    
+    autoLogin();
+     /* button  #btnToggleManter */
+    $(document).on("click", "#btnToggleManter", function(evt)
+    {
+        var alValue;
+        
+         if (localStorage.getItem("toggleManterConfigGlobal") == "true"){
+             $("#checkManter").removeClass("glyphicon glyphicon-check");
+             $("#checkManter").addClass("glyphicon glyphicon-unchecked");
+             
+             alValue = 0;
+             
+             localStorage.setItem("toggleManterConfigGlobal", false);
+             
+             $("#hintToggleConfigGlobal").removeClass("hidden");
+         } else {
+             $("#checkManter").removeClass("glyphicon glyphicon-unchecked");             
+             $("#checkManter").addClass("glyphicon glyphicon-check");             
+             
+             localStorage.setItem("toggleManterConfigGlobal", true);
+             
+             alValue = 1;
+             
+             $("#hintToggleConfigGlobal").addClass("hidden");
+         }
+         
+        var values = {'acao':'configuracoes','config':'autoLogout','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'FlagSenha':flagSenha,'dispUUID':device.uuid,'autoLogout':alValue};
+
+        webService(values, '#retorno', autoLogout);
     });
     
     }       
+    
+        
     
     
     document.addEventListener("app.Ready", register_event_handlers, false);

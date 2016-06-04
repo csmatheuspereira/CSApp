@@ -374,31 +374,41 @@
         /* graphic button  #btnTreinamentos */
     $(document).on("click", "#btnTreinamentos", function(evt)
     {
+        
+        if (checaWS()){
+        var values = {'acao':'treinamentos', 
+                      'Login':localStorage.getItem("login"),
+                      'Senha':localStorage.getItem("senha"),
+                      'FlagSenha':flagSenha,
+                      'idUsuario':localStorage.getItem("idUsuario")
+                     };
+            
+            webService(values,'#retorno',treinamentos);
+        }
+        
          /*global activate_page */
-         activate_page("#treinamentos"); 
-         return false;
+         //activate_page("#treinamentos");
     });
     
         /* button  #btnVoltarTreinamentos */
     $(document).on("click", "#btnVoltarTreinamentos", function(evt)
     {
          /*global activate_page */
-         activate_page("#activitymain"); 
-         return false;
+         activate_page("#activitymain");
     });
     
         /* button  #btnVoltarTreinamento */
     $(document).on("click", "#btnVoltarTreinamento", function(evt)
     {
          /*global activate_page */
-         activate_page("#treinamentos"); 
-         return false;
+         activate_page("#treinamentos");
     });
         /* listitem  #lvItemTreinamentos */
     $(document).on("click", "#lvItemTreinamentos", function(evt)
     {
+        perfilTreinamento($(this).data("codigo"));
          /*global activate_page */
-         activate_page("#treinamento");
+         //activate_page("#treinamento");
 	});
     
     

@@ -12,11 +12,10 @@
      // Funções que ocorrem ao abrir o app
      verificaConexao();
      definirTema();
-     listaUsuariosLocais();
-     
+     listaUsuariosLocais();      
      
      if (!checaWS()) {
-         navigator.notification.alert("Defina a URL de serviço", null, "Atenção");
+         navigator.notification.alert(err_conn_unset, null, "Atenção");
          activate_page("#configuracoes");
      };             
      
@@ -30,7 +29,7 @@
                     webService(values, "#retorno", logout);
                     $(".uib_w_39").modal("toggle");
                 } else {
-                    navigator.notification.alert("Defina a URL de serviço!", null, "Atenção");
+                    navigator.notification.alert(err_conn_unset, null, "Atenção");
                     activate_page("#configuracoes");
                 }
             }
@@ -119,7 +118,7 @@
                  navigator.notification.alert("Por favor, preencha todos os campos", null, "Erro");
              }
          } else {
-             navigator.notification.alert("Defina a URL de serviço!", null, "Atenção");
+             navigator.notification.alert(err_conn_unset, null, "Atenção");
              activate_page("#configuracoes");
          }            
      });
@@ -174,7 +173,7 @@
                  navigator.notification.alert("Por favor, preencha todos os campos", null, "Erro");
              }
          } else {
-             navigator.notification.alert("Defina a URL de serviço!", null, "Atenção");
+             navigator.notification.alert(err_conn_unset, null, "Atenção");
              activate_page("#configuracoes");
          }         
      });                 
@@ -230,7 +229,7 @@
          if (checaWS()) {
              webService(values, "#retorno", logout);
          } else {
-             navigator.notification.alert("Defina a URL de serviço!", null, "Atenção");
+             navigator.notification.alert(err_conn_unset, null, "Atenção");
              activate_page("#configuracoes");
          }        
      });
@@ -265,7 +264,7 @@
                           };
              webService(values, "#retorno", chamaCargo);             
          } else {
-             navigator.notification.alert("Defina a URL de serviço!", null, "Atenção");
+             navigator.notification.alert(err_conn_unset, null, "Atenção");
              activate_page("#configuracoes");
          }         
     });
@@ -371,6 +370,46 @@
          /*global activate_page */
          activate_page("#activitymain"); 
     });
+     
+        /* graphic button  #btnTreinamentos */
+    $(document).on("click", "#btnTreinamentos", function(evt)
+    {
+        
+        if (checaWS()){
+        var values = {'acao':'treinamentos', 
+                      'Login':localStorage.getItem("login"),
+                      'Senha':localStorage.getItem("senha"),
+                      'FlagSenha':flagSenha,
+                      'idUsuario':localStorage.getItem("idUsuario")
+                     };
+            
+            webService(values,'#retorno',treinamentos);
+        }
+        
+         /*global activate_page */
+         //activate_page("#treinamentos");
+    });
+    
+        /* button  #btnVoltarTreinamentos */
+    $(document).on("click", "#btnVoltarTreinamentos", function(evt)
+    {
+         /*global activate_page */
+         activate_page("#activitymain");
+    });
+    
+        /* button  #btnVoltarTreinamento */
+    $(document).on("click", "#btnVoltarTreinamento", function(evt)
+    {
+         /*global activate_page */
+         activate_page("#treinamentos");
+    });
+        /* listitem  #lvItemTreinamentos */
+    $(document).on("click", "#lvItemTreinamentos", function(evt)
+    {
+        perfilTreinamento($(this).data("codigo"));
+         /*global activate_page */
+         //activate_page("#treinamento");
+	});
     
     
     autoLogin();
@@ -402,8 +441,6 @@
         var values = {'acao':'configuracoes','config':'autoLogout','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'FlagSenha':flagSenha,'dispUUID':device.uuid,'autoLogout':alValue};
 
         webService(values, '#retorno', autoLogout);
-        
-        return false;
     });
     
     }       

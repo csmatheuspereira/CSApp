@@ -1,5 +1,6 @@
 var urlWS = "";
 var flagSenha = "N";
+var err_conn_unset = "Por favor, escolha uma URL de serviço.";
 
 if (localStorage.getItem("verificaUrlOnline") === null) {
     localStorage.setItem("verificaUrlOnline", "S");
@@ -59,7 +60,11 @@ function webService(values, status, callback){
                         sucesso = true;
                         
                         $("#loader").addClass("hidden");
-                        navigator.notification.alert("Ocorreu um erro desconhecido. Mensagem de erro: " + textStatus + ". Informe este erro ao suporte.", null,"Erro");       
+                        
+                        if (!textStatus == "abort"){
+                            navigator.notification.alert("Ocorreu um erro desconhecido. Mensagem de erro: " + textStatus + ". Informe este erro ao suporte.", null,"Erro");           
+                        }
+                        
                     });                
     }    
 }
@@ -296,7 +301,7 @@ function sair(){
             }            
         }, "Confirmação", ["Sim", "Não"]);                
     
-    } else if (window.location.hash == "#cargo" || window.location.hash == "#vagas" || window.location.hash == "#configGlobal" || window.location.hash == "#progressao" ){
+    } else if (window.location.hash == "#cargo" || window.location.hash == "#vagas" || window.location.hash == "#configGlobal" || window.location.hash == "#progressao" || window.location.hash == "#treinamentos" ){
         activate_page("#activitymain");
     
     } else if (window.location.hash == "#vaga"){
@@ -307,6 +312,8 @@ function sair(){
     
     } else if (window.location.hash == "#configuracoes" || window.location.hash == "#novousuario"){
         activate_page("#mainpage");
+    } else if (window.location.hash == "#treinamento"){
+        activate_page("#treinamentos");
     } 
     
     

@@ -446,6 +446,17 @@
         webService(values, '#retorno', autoLogout);
     });
     
+        /* button  #btnEntendiMainPage */
+    $(document).on("click", "#btnEntendiMainPage", function(evt)
+    {
+         /* Other options: .modal("show")  .modal("hide")  .modal("toggle")
+         See full API here: http://getbootstrap.com/javascript/#modals 
+            */
+        
+         $(".uib_w_39").modal("toggle");  
+         return false;
+    });
+    
     }       
     
         

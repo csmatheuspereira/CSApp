@@ -71,7 +71,10 @@
 
          push.on('notification', function(data) {
              console.log(data.message);
-             alert(data.title+" Message: " +data.message);
+             alert(data.title+" Message: " +data.message + data.additionalData);
+             
+             activate_page(data.additionalData);
+             
              // data.title,
              // data.count,
              // data.sound,

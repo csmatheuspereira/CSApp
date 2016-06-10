@@ -71,7 +71,10 @@
 
          push.on('notification', function(data) {
              console.log(data.message);
-             alert(data.title+" Message: " +data.message);
+             alert(data.title+" Message: " +data.message + data.additionalData);
+             
+             activate_page(data.additionalData);
+             
              // data.title,
              // data.count,
              // data.sound,
@@ -374,31 +377,41 @@
         /* graphic button  #btnTreinamentos */
     $(document).on("click", "#btnTreinamentos", function(evt)
     {
+        
+        if (checaWS()){
+        var values = {'acao':'treinamentos', 
+                      'Login':localStorage.getItem("login"),
+                      'Senha':localStorage.getItem("senha"),
+                      'FlagSenha':flagSenha,
+                      'idUsuario':localStorage.getItem("idUsuario")
+                     };
+            
+            webService(values,'#retorno',treinamentos);
+        }
+        
          /*global activate_page */
-         activate_page("#treinamentos"); 
-         return false;
+         //activate_page("#treinamentos");
     });
     
         /* button  #btnVoltarTreinamentos */
     $(document).on("click", "#btnVoltarTreinamentos", function(evt)
     {
          /*global activate_page */
-         activate_page("#activitymain"); 
-         return false;
+         activate_page("#activitymain");
     });
     
         /* button  #btnVoltarTreinamento */
     $(document).on("click", "#btnVoltarTreinamento", function(evt)
     {
          /*global activate_page */
-         activate_page("#treinamentos"); 
-         return false;
+         activate_page("#treinamentos");
     });
         /* listitem  #lvItemTreinamentos */
     $(document).on("click", "#lvItemTreinamentos", function(evt)
     {
+        perfilTreinamento($(this).data("codigo"));
          /*global activate_page */
-         activate_page("#treinamento");
+         //activate_page("#treinamento");
 	});
     
     
@@ -431,6 +444,17 @@
         var values = {'acao':'configuracoes','config':'autoLogout','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'FlagSenha':flagSenha,'dispUUID':device.uuid,'autoLogout':alValue};
 
         webService(values, '#retorno', autoLogout);
+    });
+    
+        /* button  #btnEntendiMainPage */
+    $(document).on("click", "#btnEntendiMainPage", function(evt)
+    {
+         /* Other options: .modal("show")  .modal("hide")  .modal("toggle")
+         See full API here: http://getbootstrap.com/javascript/#modals 
+            */
+        
+         $(".uib_w_39").modal("toggle");  
+         return false;
     });
     
     }       

@@ -118,6 +118,7 @@
         <script type="application/javascript" src="js/vagas/functions.js"></script>
         <script type="application/javascript" src="js/configGlobal/functions.js"></script>
         <script type="application/javascript" src="js/progressao/functions.js"></script>
+        <script type="application/javascript" src="js/treinamento/functions.js"></script>
 
         <script src="js/idle.js"></script>
 
@@ -209,9 +210,6 @@
             <div class="modal outer-element uib_w_39" data-uib="twitter%20bootstrap/modal" data-ver="1" data-backdrop="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <button class="close" data-dismiss="modal">x</button>
-                        </div>
 
                         <div class="modal-body">
                             <div class="col uib_col_5 single-col" data-uib="layout/col" data-ver="0">
@@ -225,8 +223,9 @@
                                     </div>
                                     <div class="alert no_wrap widget uib_w_41 d-margins alert-warning" data-uib="twitter%20bootstrap/alert" data-ver="1">
                                         <center><b>Desconectado por inatividade.</b>
-                                            <br>Você pode desabilitar essa função em "Configurações</center>
+                                            <br>Você pode desabilitar essa função em "Configurações"</center>
                                     </div>
+                                    <button class="btn widget uib_w_113 d-margins btn-lg btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnEntendiMainPage"><i class="glyphicon glyphicon-ok button-icon-left" data-position="left"></i>Entendi</button>
                                     <span class="uib_shim"></span>
                                 </div>
                             </div>
@@ -751,7 +750,7 @@
                                     <div class="widget-container right-receptacle">
                                     </div>
                                     <div class="text-container">
-                                        <h3><p><strong>Curso 1</strong></p></h3> 
+                                        <h3><p><strong class="tituloTreinamento">Curso 1</strong></p></h3> 
                                     </div>
                                 </div>
                             </div>
@@ -763,7 +762,7 @@
                                     <div class="widget-container right-receptacle">
 
                                     </div>
-                                    <div class="text-container">
+                                    <div class="text-container" id="perfilTreinamento">
                                         <p><strong>Palestrante:</strong> Carmen</p>
 
                                         <p><strong>
@@ -786,7 +785,7 @@
                         </div>
 
                         <div class="panel-footer panel-treina">
-                            <div class="widget-container inscricao">
+                            <div class="widget-container inscricao btnInscricao">
                                 <button class="btn widget uib_w_112 d-margins btnWidth btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1">Enviar Inscrição</button>
                             </div>
                         </div>

@@ -1,5 +1,6 @@
 var urlWS = "";
 var flagSenha = "N";
+var err_conn_unset = "Por favor, escolha uma URL de serviço.";
 
 if (localStorage.getItem("verificaUrlOnline") === null) {
     localStorage.setItem("verificaUrlOnline", "S");
@@ -59,7 +60,11 @@ function webService(values, status, callback){
                         sucesso = true;
                         
                         $("#loader").addClass("hidden");
-                        navigator.notification.alert("Ocorreu um erro desconhecido. Mensagem de erro: " + textStatus + ". Informe este erro ao suporte.", null,"Erro");       
+                        
+                        if (!textStatus == "abort"){
+                            navigator.notification.alert("Ocorreu um erro desconhecido. Mensagem de erro: " + textStatus + ". Informe este erro ao suporte.", null,"Erro");           
+                        }
+                        
                     });                
     }    
 }
@@ -296,7 +301,7 @@ function sair(){
             }            
         }, "Confirmação", ["Sim", "Não"]);                
     
-    } else if (window.location.hash == "#cargo" || window.location.hash == "#vagas" || window.location.hash == "#configGlobal" || window.location.hash == "#progressao" ){
+    } else if (window.location.hash == "#cargo" || window.location.hash == "#vagas" || window.location.hash == "#configGlobal" || window.location.hash == "#progressao" || window.location.hash == "#treinamentos" ){
         activate_page("#activitymain");
     
     } else if (window.location.hash == "#vaga"){
@@ -307,13 +312,15 @@ function sair(){
     
     } else if (window.location.hash == "#configuracoes" || window.location.hash == "#novousuario"){
         activate_page("#mainpage");
+    } else if (window.location.hash == "#treinamento"){
+        activate_page("#treinamentos");
     } 
     
     
 }
 
 function autoLogin(){
-    if (localStorage.getItem("toggleManterConfigGlobal") == "false" &&
+    if (localStorage.getItem("toggleManterConfigGlobal") == "true" &&
         localStorage.getItem("login") != null &&
         localStorage.getItem("login") != null) {
 
@@ -326,3 +333,12 @@ function autoLogin(){
         webService(values, "#retorno", loginMainPage);            
     }
 }
+
+/* POR FAVOR NÂO MUDE NADA AQUI ********* MANTENHA DISTANCI DESSE TRECHO DE CÓDIGO */
+/* MATHEUS MARQUES, SÁBADO 04 de JUNHO de 2016 */
+function moeda(n, c, d, t)
+{
+    c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "," : d, t = t == undefined ? "." : t, s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
+    return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+}
+/* POR FAVOR NÂO MUDE NADA AQUI ********* MANTENHA DISTANCI DESSE TRECHO DE CÓDIGO */

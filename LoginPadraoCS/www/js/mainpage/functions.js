@@ -46,6 +46,8 @@ function loginMainPage(json){
         if(json.SENHACRIPTO != "-1"){
             localStorage.setItem("senha", json.SENHACRIPTO);
             flagSenha = "S";
+        }else{
+            flagSenha = "N";
         }
         
         localStorage.setItem('cliente', json.cliente);

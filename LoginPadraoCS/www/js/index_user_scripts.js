@@ -70,16 +70,39 @@
          });
 
          push.on('notification', function(data) {
-             console.log(data.message);
-             alert(data.title+" Message: " +data.message + data.additionalData);
              
-             activate_page(data.additionalData);
+             if(data.title == ("Treinamento")){
+                 
+                 if (checaWS()){
+                    var values = {'acao':'treinamentos', 
+                                  'Login':localStorage.getItem("login"),
+                                  'Senha':localStorage.getItem("senha"),
+                                  'FlagSenha':flagSenha,
+                                  'idUsuario':localStorage.getItem("idUsuario")
+                                 };
+
+                    webService(values,'#retorno',treinamentos);
+                }
+                 
+             }else if(data.title == ("Vagas")){
+                 
+                if (checaWS()){
+                    var values = {'acao':'vagas', 
+                                  'Login':localStorage.getItem("login"),
+                                  'Senha':localStorage.getItem("senha"),
+                                  'FlagSenha':flagSenha
+                    };
+
+
+                    badgeNovasVagas(1);
+                    localStorage.setItem("cliqueVaga", 1);
+                    $(".badge-final").addClass("hidden");
+                    webService(values,'#retorno',listaVagas);
+                }
+                 
+             }
              
-             // data.title,
-             // data.count,
-             // data.sound,
-             // data.image,
-             // data.additionalData
+
          });
 
          push.on('error', function(e) {
@@ -444,17 +467,6 @@
         var values = {'acao':'configuracoes','config':'autoLogout','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'FlagSenha':flagSenha,'dispUUID':device.uuid,'autoLogout':alValue};
 
         webService(values, '#retorno', autoLogout);
-    });
-    
-        /* button  #btnEntendiMainPage */
-    $(document).on("click", "#btnEntendiMainPage", function(evt)
-    {
-         /* Other options: .modal("show")  .modal("hide")  .modal("toggle")
-         See full API here: http://getbootstrap.com/javascript/#modals 
-            */
-        
-         $(".uib_w_39").modal("toggle");  
-         return false;
     });
     
     }       

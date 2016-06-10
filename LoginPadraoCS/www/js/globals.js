@@ -1,5 +1,6 @@
 var urlWS = "";
 var flagSenha = "N";
+var err_conn_unset = "Defina URL de acesso.";
 
 if (localStorage.getItem("verificaUrlOnline") === null) {
     localStorage.setItem("verificaUrlOnline", "S");

@@ -70,13 +70,39 @@
          });
 
          push.on('notification', function(data) {
-             console.log(data.message);
-             alert(data.title+" Message: " +data.message);
-             // data.title,
-             // data.count,
-             // data.sound,
-             // data.image,
-             // data.additionalData
+             
+             if(data.title == ("Treinamento")){
+                 
+                 if (checaWS()){
+                    var values = {'acao':'treinamentos', 
+                                  'Login':localStorage.getItem("login"),
+                                  'Senha':localStorage.getItem("senha"),
+                                  'FlagSenha':flagSenha,
+                                  'idUsuario':localStorage.getItem("idUsuario")
+                                 };
+
+                    webService(values,'#retorno',treinamentos);
+                }
+                 
+             }else if(data.title == ("Vagas")){
+                 
+                if (checaWS()){
+                    var values = {'acao':'vagas', 
+                                  'Login':localStorage.getItem("login"),
+                                  'Senha':localStorage.getItem("senha"),
+                                  'FlagSenha':flagSenha
+                    };
+
+
+                    badgeNovasVagas(1);
+                    localStorage.setItem("cliqueVaga", 1);
+                    $(".badge-final").addClass("hidden");
+                    webService(values,'#retorno',listaVagas);
+                }
+                 
+             }
+             
+
          });
 
          push.on('error', function(e) {

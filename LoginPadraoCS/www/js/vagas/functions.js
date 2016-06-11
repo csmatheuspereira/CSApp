@@ -57,7 +57,7 @@ function badgeNovasVagas(flagSetaData){
     
     if (localStorage.getItem("dataUltimoClique") === null || flagSetaData == 1) {
         cliqueVaga();
-        localStorage.setItem("dataUltimoClique", geraData('/',1));        
+        localStorage.setItem("dataUltimoClique", geraData('/',3));        
         return localStorage.getItem("dataUltimoClique");
     }else if(flagSetaData == 0){
         cliqueVaga();

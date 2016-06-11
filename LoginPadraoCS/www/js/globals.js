@@ -208,6 +208,10 @@ function geraData(separador,posicao){
     var mm = today.getMonth()+1;
     var yyyy = today.getFullYear();
     
+    var seconds = today.getSeconds();
+    var minutes = today.getMinutes();
+    var hour = today.getHours();
+    
     if(dd<10){
         dd='0'+dd
     } 
@@ -219,6 +223,8 @@ function geraData(separador,posicao){
         today = dd+separador+mm+separador+yyyy;
     }else if(posicao == 2){
         today = yyyy+separador+mm+separador+dd;
+    }else if(posicao == 3){
+        today = dd+separador+mm+separador+yyyy+" "+hour+":"+minutes+":"+seconds;
     }
     
     return today;

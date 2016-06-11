@@ -70,39 +70,13 @@
          });
 
          push.on('notification', function(data) {
-             
-             if(data.title == ("Treinamento")){
-                 
-                 if (checaWS()){
-                    var values = {'acao':'treinamentos', 
-                                  'Login':localStorage.getItem("login"),
-                                  'Senha':localStorage.getItem("senha"),
-                                  'FlagSenha':flagSenha,
-                                  'idUsuario':localStorage.getItem("idUsuario")
-                                 };
-
-                    webService(values,'#retorno',treinamentos);
-                }
-                 
-             }else if(data.title == ("Vagas")){
-                 
-                if (checaWS()){
-                    var values = {'acao':'vagas', 
-                                  'Login':localStorage.getItem("login"),
-                                  'Senha':localStorage.getItem("senha"),
-                                  'FlagSenha':flagSenha
-                    };
-
-
-                    badgeNovasVagas(1);
-                    localStorage.setItem("cliqueVaga", 1);
-                    $(".badge-final").addClass("hidden");
-                    webService(values,'#retorno',listaVagas);
-                }
-                 
-             }
-             
-
+             console.log(data.message);
+             alert(data.title+" Message: " +data.message);
+             // data.title,
+             // data.count,
+             // data.sound,
+             // data.image,
+             // data.additionalData
          });
 
          push.on('error', function(e) {
@@ -400,41 +374,31 @@
         /* graphic button  #btnTreinamentos */
     $(document).on("click", "#btnTreinamentos", function(evt)
     {
-        
-        if (checaWS()){
-        var values = {'acao':'treinamentos', 
-                      'Login':localStorage.getItem("login"),
-                      'Senha':localStorage.getItem("senha"),
-                      'FlagSenha':flagSenha,
-                      'idUsuario':localStorage.getItem("idUsuario")
-                     };
-            
-            webService(values,'#retorno',treinamentos);
-        }
-        
          /*global activate_page */
-         //activate_page("#treinamentos");
+         activate_page("#treinamentos"); 
+         return false;
     });
     
         /* button  #btnVoltarTreinamentos */
     $(document).on("click", "#btnVoltarTreinamentos", function(evt)
     {
          /*global activate_page */
-         activate_page("#activitymain");
+         activate_page("#activitymain"); 
+         return false;
     });
     
         /* button  #btnVoltarTreinamento */
     $(document).on("click", "#btnVoltarTreinamento", function(evt)
     {
          /*global activate_page */
-         activate_page("#treinamentos");
+         activate_page("#treinamentos"); 
+         return false;
     });
         /* listitem  #lvItemTreinamentos */
     $(document).on("click", "#lvItemTreinamentos", function(evt)
     {
-        perfilTreinamento($(this).data("codigo"));
          /*global activate_page */
-         //activate_page("#treinamento");
+         activate_page("#treinamento");
 	});
     
     
@@ -467,6 +431,22 @@
         var values = {'acao':'configuracoes','config':'autoLogout','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'FlagSenha':flagSenha,'dispUUID':device.uuid,'autoLogout':alValue};
 
         webService(values, '#retorno', autoLogout);
+    });
+    
+        /* button  #btnSobreConfig */
+    $(document).on("click", "#btnSobreConfig", function(evt)
+    {
+         /*global activate_page */
+         activate_page("#sobre"); 
+         return false;
+    });
+    
+        /* button  #btnVoltarSobre */
+    $(document).on("click", "#btnVoltarSobre", function(evt)
+    {
+         /*global activate_page */
+         activate_page("#configGlobal"); 
+         return false;
     });
     
     }       

@@ -211,5 +211,19 @@
   -webkit-transition: height 0.35s ease;
   transition: height 0.35s ease;
 }
-        
+    
+/* tela sobre*/
+
+.sobre-head{
+    margin-top: 35%;
+    text-align: center;
+}
+.sobre{
+    text-align: center;
+    margin-bottom: 30px !imporntant;
+}
+
+
+/*fim tela sobre*/
+
         

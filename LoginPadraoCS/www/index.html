@@ -78,6 +78,7 @@
         <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
         <link rel="stylesheet" type="text/css" href="css/global/global.css">
+        <link href="css/bootstrap-toggle.min.css" rel="stylesheet">
 
         <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
         <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
@@ -117,7 +118,6 @@
         <script type="application/javascript" src="js/vagas/functions.js"></script>
         <script type="application/javascript" src="js/configGlobal/functions.js"></script>
         <script type="application/javascript" src="js/progressao/functions.js"></script>
-        <script type="application/javascript" src="js/treinamento/functions.js"></script>
 
         <script src="js/idle.js"></script>
 
@@ -137,6 +137,7 @@
         <script type="application/javascript" src="sidebar/js/swipe-hammer.js"></script>
         <script type="application/javascript" src="sidebar/js/sidebar.js"></script>
         <script type="application/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="js/bootstrap-toggle.min.js"></script>
 
     </head>
 
@@ -208,6 +209,9 @@
             <div class="modal outer-element uib_w_39" data-uib="twitter%20bootstrap/modal" data-ver="1" data-backdrop="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="close" data-dismiss="modal">x</button>
+                        </div>
 
                         <div class="modal-body">
                             <div class="col uib_col_5 single-col" data-uib="layout/col" data-ver="0">
@@ -221,9 +225,8 @@
                                     </div>
                                     <div class="alert no_wrap widget uib_w_41 d-margins alert-warning" data-uib="twitter%20bootstrap/alert" data-ver="1">
                                         <center><b>Desconectado por inatividade.</b>
-                                            <br>Você pode desabilitar essa função em "Configurações"</center>
+                                            <br>Você pode desabilitar essa função em "Configurações</center>
                                     </div>
-                                    <button class="btn widget uib_w_113 d-margins btn-lg btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnEntendiMainPage"><i class="glyphicon glyphicon-ok button-icon-left" data-position="left"></i>Entendi</button>
                                     <span class="uib_shim"></span>
                                 </div>
                             </div>
@@ -392,6 +395,7 @@
                                 <button class="btn widget uib_w_49 d-margins btn-lg btn-primary toggleMarginStyleCustom hidden" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnDispositivosConfig"><i class="glyphicon glyphicon-phone button-icon-left" data-position="left"></i>Dispositivos</button>
 
                                 <button class="btn widget uib_w_72 d-margins btn-lg btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnTemasConfig"><i class="glyphicon glyphicon-tint button-icon-left" data-position="left"></i>Temas</button>
+                                <button class="btn widget uib_w_113 d-margins btn-lg btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnSobreConfig"><i class="glyphicon glyphicon-info-sign button-icon-left" data-position="left"></i>Sobre</button>
 
                                 <button class="btn widget uib_w_48 d-margins btn-lg btn-danger" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnSairConfig"><i class="glyphicon glyphicon-log-out button-icon-left" data-position="left"></i>Sair</button><span class="uib_shim"></span>
                             </div>
@@ -748,7 +752,7 @@
                                     <div class="widget-container right-receptacle">
                                     </div>
                                     <div class="text-container">
-                                        <h3><p><strong class="tituloTreinamento">Curso 1</strong></p></h3> 
+                                        <h3><p><strong>Curso 1</strong></p></h3> 
                                     </div>
                                 </div>
                             </div>
@@ -760,7 +764,7 @@
                                     <div class="widget-container right-receptacle">
 
                                     </div>
-                                    <div class="text-container" id="perfilTreinamento">
+                                    <div class="text-container">
                                         <p><strong>Palestrante:</strong> Carmen</p>
 
                                         <p><strong>
@@ -783,11 +787,49 @@
                         </div>
 
                         <div class="panel-footer panel-treina">
-                            <div class="widget-container inscricao btnInscricao">
+                            <div class="widget-container inscricao">
                                 <button class="btn widget uib_w_112 d-margins btnWidth btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1">Enviar Inscrição</button>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="upage hidden" id="sobre">
+            <div class="upage-outer">
+                <div class="uib-header header-bg container-group inner-element uib_w_114 uib-header-fixed headerStyleCustom" data-uib="layout/header" data-ver="0">
+                    <h2>Sobre</h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left">
+                        <button class="btn widget uib_w_115 d-margins btnVoltarStyleCustom btn-lg btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="btnVoltarSobre"><i class="glyphicon glyphicon-chevron-left button-icon-left" data-position="left"></i>
+                        </button>
+                    </div>
+                    <div class="widget-container content-area horiz-area wrapping-col right"></div>
+                </div>
+                <div class="upage-content ac0 content-area vertical-col left" id="page_52_13">
+                    <div class="tarea widget uib_w_116 d-margins" data-uib="media/text" data-ver="0" name="uib_w_116">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div class="text-container">
+                            <h3 class="sobre-head">CS MOBILE</h3>
+                            <p class="sobre">Versão 0.9.0</p>
+                        </div>
+                    </div>
+                    <div class="widget uib_w_117 scale-image d-margins" data-uib="media/img" data-ver="0">
+                        <figure class="figure-align">
+                            <img src="interface/Logo.png">
+
+                            <figcaption data-position="bottom"></figcaption>
+                        </figure>
+                    </div>
+                    <div class="text-container">
+                        <p class="sobre">www.compusoft-info.com.br</p>
+                        <p class="sobre">© 2016 - Compusoftware.
+                            <br>Todos os direitos reservados.
+                            <br>
+                        </p>
+                    </div>
+
                 </div>
             </div>
         </div>

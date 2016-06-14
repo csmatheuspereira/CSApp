@@ -342,3 +342,12 @@ function moeda(n, c, d, t)
     return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 }
 /* POR FAVOR NÂO MUDE NADA AQUI ********* MANTENHA DISTANCI DESSE TRECHO DE CÓDIGO */
+
+function titleize(text) {
+    var words = text.toLowerCase().split(" ");
+    for (var a = 0; a < words.length; a++) {
+        var w = words[a];
+        words[a] = w[0].toUpperCase() + w.slice(1);
+    }
+    return words.join(" ");
+}

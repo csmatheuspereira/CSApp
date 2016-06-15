@@ -8,6 +8,11 @@
  function register_event_handlers()
  {
      var dispToken = "";
+     
+     ////// Saber de onde o usuário está acessando a tela de SOBRE do aplicativo.
+     ////// POR ISSO NÃO INTRODUZA SUAS MÃOS AQUI!
+     //////Obrigado Matheus Marques 14/06/2016.
+     var sobreOnde;
     
      // Funções que ocorrem ao abrir o app
      verificaConexao();
@@ -184,18 +189,20 @@
          navigator.notification.confirm("Você realmente deseja apagar todas informações deste dispositivo?",    function(buttonID){
             
              if(buttonID == 1){
-                 localStorage.setItem("login", "");
-                 localStorage.setItem("senha", "");
-                 localStorage.setItem("idUsuario", "");
-                 localStorage.setItem("urlWS", "");
+//                 localStorage.setItem("login", "");
+//                 localStorage.setItem("senha", "");
+//                 localStorage.setItem("idUsuario", "");
+//                 localStorage.setItem("urlWS", "");
 
                  //localStorage.setItem("indexUsr", 0);                
-
+                 
+                 localStorage.clear();
+                 
                  dati.emptyTable("tblUsers",function(status){
                      listaUsuariosLocais();
                  }); 
-                 localStorage.removeItem("temaAtual");
-                 localStorage.removeItem("temaAnterior");
+//                 localStorage.removeItem("temaAtual");
+//                 localStorage.removeItem("temaAnterior");
                  navigator.notification.alert("Dados apagados com sucesso!", null, "Sucesso");
              }            
          }, "Confirmação", ["Sim", "Não"]);
@@ -374,9 +381,16 @@
         /* graphic button  #btnTreinamentos */
     $(document).on("click", "#btnTreinamentos", function(evt)
     {
-         /*global activate_page */
-         activate_page("#treinamentos"); 
-         return false;
+         if (checaWS()){
+        var values = {'acao':'treinamentos', 
+                      'Login':localStorage.getItem("login"),
+                      'Senha':localStorage.getItem("senha"),
+                      'FlagSenha':flagSenha,
+                      'idUsuario':localStorage.getItem("idUsuario")
+                     };
+            
+            webService(values,'#retorno',treinamentos);
+        }
     });
     
         /* button  #btnVoltarTreinamentos */
@@ -436,17 +450,25 @@
         /* button  #btnSobreConfig */
     $(document).on("click", "#btnSobreConfig", function(evt)
     {
-         /*global activate_page */
-         activate_page("#sobre"); 
-         return false;
+         sobreOnde = "logado";
+         activate_page("#sobre");
     });
     
         /* button  #btnVoltarSobre */
     $(document).on("click", "#btnVoltarSobre", function(evt)
     {
-         /*global activate_page */
-         activate_page("#configGlobal"); 
-         return false;
+         if(sobreOnde == "logado"){
+             activate_page("#configGlobal");
+         }else if(sobreOnde == "semLogin"){
+             activate_page("#configuracoes"); 
+         }
+    });
+    
+        /* button  #btnSobreConfiguracoes */
+    $(document).on("click", "#btnSobreConfiguracoes", function(evt)
+    {
+         sobreOnde = "semLogin";
+         activate_page("#sobre"); 
     });
     
     }       

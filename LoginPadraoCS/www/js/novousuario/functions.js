@@ -14,44 +14,7 @@ function login(json){
                 });
             }
         });
-        
-            
-        /*
-        // Pega os textos do comboBox e coloca na array cmbUsuario
-        var cmbUsuario = $("#cmbUsuarioMainPage option").map(function() {
-                 return $(this).text();
-              }).get();
-        
-        
-        // Verifica se existe usuários já cadastrados
-        if (cmbUsuario.length > 0){
-            var final = (cmbUsuario.length - 1);
-        }else{
-            var final = 0;
-        }
-            
-        
-        // Verifica se já existe o usuário no combo
-        for (var i = 0; i <= final; i++){
-            if (cmbUsuario[i] == $("#txtNomeNovoUsuario").val())
-                {                                                            
-                    break;
-                    // Aqui o usuário já existe. Sai do for e chama a próxima tela
-                } else {
-                    // Usuário não existe. Cadastra no BD local
-                    var registro = { "NOME": $("#txtNomeNovoUsuario").val() }
-                    
-                    dati.insert("tblUsers", registro, function(ID){
-                        //navigator.notification.alert("Cadastrado");
-                    });
-                    
-                    break;
-                }
-        }
-        
-        */ //Antiga função de registrar usuário inexistente
-        
-        
+
         $("#txtSenhaNovoUsuario").val("");
         
         localStorage.setItem("idUsuario", json.ID);
@@ -64,6 +27,13 @@ function login(json){
         }
         
         localStorage.setItem('cliente', json.cliente);
+        
+        if(json.nomeUsuario != "err_no_name"){
+           //panielNome
+            $("#textoPainel").html("Bem-vindo<br />"+titleize(json.nomeUsuario));
+        }else{
+            $("#textoPainel").html("Bem-vindo");
+        }
         
         badge(json.qtde, ".badVagas", localStorage.getItem("cliqueVaga"));
         selecionaLogo(localStorage.getItem('cliente'));

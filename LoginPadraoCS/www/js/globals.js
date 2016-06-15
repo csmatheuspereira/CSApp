@@ -322,7 +322,7 @@ function sair(){
 function autoLogin(){
     if (localStorage.getItem("toggleManterConfigGlobal") == "true" &&
         localStorage.getItem("login") != null &&
-        localStorage.getItem("login") != null) {
+        localStorage.getItem("senha") != null) {
 
         var dispUUID = device.uuid;
         var dispNome = device.manufacturer +" "+ device.model;    

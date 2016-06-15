@@ -52,6 +52,15 @@ function loginMainPage(json){
         
         localStorage.setItem('cliente', json.cliente);
         
+        //navigator.notification.alert(json.nomeUsuario);
+        
+        if(json.nomeUsuario != "err_no_name"){
+           //panielNome
+            $("#textoPainel").html("Bem-vindo<br />"+titleize(json.nomeUsuario));
+        }else{
+            $("#textoPainel").html("Bem-vindo");
+        }
+        
         badge(json.qtde, ".badVagas", localStorage.getItem("cliqueVaga"));
         selecionaLogo(localStorage.getItem('cliente'));
         

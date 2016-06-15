@@ -411,8 +411,7 @@
         /* listitem  #lvItemTreinamentos */
     $(document).on("click", "#lvItemTreinamentos", function(evt)
     {
-         /*global activate_page */
-         activate_page("#treinamento");
+         perfilTreinamento($(this).data("codigo"));
 	});
     
     

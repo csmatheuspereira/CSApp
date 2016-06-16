@@ -35,6 +35,10 @@ function login(json){
             $("#textoPainel").html("Bem-vindo");
         }
         
+        if(json.qtde > 0){
+            localStorage.setItem("cliqueVaga", 0)
+        }
+        
         badge(json.qtde, ".badVagas", localStorage.getItem("cliqueVaga"));
         selecionaLogo(localStorage.getItem('cliente'));
         

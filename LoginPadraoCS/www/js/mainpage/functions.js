@@ -21,7 +21,7 @@ function loginMainPage(json){
         localStorage.setItem("idUsuario", json.ID);
         
         if(json.autoLogout == "-1" || json.autoLogout == null || json.autoLogout == undefined){
-            navigator.notification.confirm("Você deseja que este dispositivo desconecte-se automaticamente após 30 minutos?", function(buttonID){
+            navigator.notification.confirm("Você deseja que este dispositivo desconecte-se automaticamente após 30 minutos de inatividade?", function(buttonID){
                 
                 if(buttonID == 1){
                     

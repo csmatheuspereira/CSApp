@@ -2,6 +2,10 @@ var urlWS = "";
 var flagSenha = "N";
 var err_conn_unset = "Defina URL de acesso.";
 
+// Descobrir qual a origem do sobre
+var sobreSender;
+
+
 if (localStorage.getItem("verificaUrlOnline") === null) {
     localStorage.setItem("verificaUrlOnline", "S");
 }
@@ -306,7 +310,7 @@ function sair(){
             }            
         }, "Confirmação", ["Sim", "Não"]);                
     
-    } else if (window.location.hash == "#cargo" || window.location.hash == "#vagas" || window.location.hash == "#configGlobal" || window.location.hash == "#progressao" ){
+    } else if (window.location.hash == "#cargo" || window.location.hash == "#vagas" || window.location.hash == "#configGlobal" || window.location.hash == "#progressao" || window.location.hash == "#treinamentos" ){
         activate_page("#activitymain");
     
     } else if (window.location.hash == "#vaga"){
@@ -316,8 +320,19 @@ function sair(){
         activate_page("#configGlobal");
     
     } else if (window.location.hash == "#configuracoes" || window.location.hash == "#novousuario"){
-        activate_page("#mainpage");
-    } 
+        activate_page("#mainpage");    
+    
+    } else if (window.location.hash == "#sobre") {
+        
+        if(sobreSender == "logado"){
+         activate_page("#configGlobal");
+        }else if(sobreSender == "semLogin"){
+         activate_page("#configuracoes"); 
+        }
+        
+    } else if (window.location.hash == "#treinamento") {
+        activate_page("#treinamentos");    
+    }
     
     
 }

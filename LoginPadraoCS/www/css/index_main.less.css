@@ -568,7 +568,7 @@ label:empty {
     border-radius: 5px;
     border-width: 1px;
     border-style: solid;
-    border-color: grey;
+    border-color: #000000;
     background-color: #ffffff;
   }
 }
@@ -1098,13 +1098,13 @@ label:empty {
 }
 @media all and (min-width: 720px) {
   .row-height-5 > .col > .content-area {
-    min-height: 44px;
+    min-height: 111.5625px;
   }
 }
 .RowStyleCustom {
   margin: auto;
   width: 100%;
-  padding: 10px;
+  padding: 0px;
 }
 .btnMenuStyleCustom {
   margin: 5%;
@@ -1206,5 +1206,13 @@ label:empty {
 @media all and (min-width: 720px) {
   .row-height-8 > .col > .content-area {
     min-height: 100px;
+  }
+}
+@media all {
+  .activitymainStyleBG {
+    background-color: ;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 }

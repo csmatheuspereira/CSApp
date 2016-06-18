@@ -26,7 +26,6 @@ function loginMainPage(json){
                 if(buttonID == 1){
                     
                     var values = {'acao':'configuracoes','config':'autoLogout','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'FlagSenha':flagSenha,'dispUUID':device.uuid,'autoLogout':1};
-                   // dump(values);
                     webService(values, '#retorno', autoLogout);
                     
                     localStorage.setItem("toggleManterConfigGlobal", true);

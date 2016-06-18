@@ -12,8 +12,15 @@
      ////// Saber de onde o usuário está acessando a tela de SOBRE do aplicativo.
      ////// POR ISSO NÃO INTRODUZA SUAS MÃOS AQUI!
      //////Obrigado Matheus Marques 14/06/2016.
-     var sobreOnde;
-    
+     
+     
+     /* UPDATE 16/06/16
+     Faça as coisas direito que não precisa de correção, animal.
+     Movido para Globals.js
+     Obrigado, Matheus Neves
+     */
+     
+
      // Funções que ocorrem ao abrir o app
      verificaConexao();
      definirTema();
@@ -474,16 +481,17 @@
         /* button  #btnSobreConfig */
     $(document).on("click", "#btnSobreConfig", function(evt)
     {
-         sobreOnde = "logado";
+         sobreSender = "logado";
          activate_page("#sobre");
+        
     });
     
         /* button  #btnVoltarSobre */
     $(document).on("click", "#btnVoltarSobre", function(evt)
     {
-         if(sobreOnde == "logado"){
+         if(sobreSender == "logado"){
              activate_page("#configGlobal");
-         }else if(sobreOnde == "semLogin"){
+         }else if(sobreSender == "semLogin"){
              activate_page("#configuracoes"); 
          }
     });
@@ -491,7 +499,7 @@
         /* button  #btnSobreConfiguracoes */
     $(document).on("click", "#btnSobreConfiguracoes", function(evt)
     {
-         sobreOnde = "semLogin";
+         sobreSender = "semLogin";
          activate_page("#sobre"); 
     });
      

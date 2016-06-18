@@ -30,9 +30,9 @@ function login(json){
         
         if(json.nomeUsuario != "err_no_name"){
            //panielNome
-            $("#textoPainel").html("Bem-vindo<br />"+titleize(json.nomeUsuario));
+             $("#textoPainel").html("<center><h3 style='margin-bottom: -20px !important;'><strong>Bem-vindo</h3></strong><br /><h4>"+titleize(json.nomeUsuario) + "</h4></center>");
         }else{
-            $("#textoPainel").html("Bem-vindo");
+            $("#textoPainel").html("<center><h3 style='margin-bottom: -20px !important;'><strong>Bem-vindo</strong></h3><br /></center>");
         }
         
         badge(json.qtde, ".badVagas", localStorage.getItem("cliqueVaga"));

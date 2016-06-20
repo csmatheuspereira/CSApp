@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "23237e29-44bd-49d8-85ea-d597f2f6b29f",
-      "lastModifiedDate": 1465846080413,
+      "lastModifiedDate": 1466262269331,
       "creationDate": 1460057646367
     },
     "XDK-app-designer": "true",
@@ -238,13 +238,13 @@
         ],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "DrzF7goh6UeB09CO_GbJdA2",
+        "certificateId_": "B6yFPyCMJUazEuEnCtNThw2",
         "cordovaCLIVersion_": "5.1.1",
         "crosswalkVersion_": "16",
-        "appVersion_": "0.9.0",
+        "appVersion_": "0.9.9",
         "appAuthor_": "Compusoftware",
         "appDescription_": "Informações para gestores e colaboradores integradas aos ERPs da Compusoftware",
-        "appVersionCode_": "90"
+        "appVersionCode_": "99"
       },
       "iOS": {
         "platform_": "ios",
@@ -405,7 +405,7 @@
         ],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "vjPAC3R8hEWjozsiEb3tGg2",
+        "certificateId_": "mHhxQduaiEu2E8IMhbQzXg2",
         "iosProvs_": [
           {
             "relPath": "adhoci9.mobileprovision",
@@ -418,10 +418,10 @@
         ],
         "cordovaCLIVersion_": "5.1.1",
         "crosswalkVersion_": "16",
-        "appVersion_": "0.9.0",
+        "appVersion_": "0.9.9",
         "appAuthor_": "Compusoftware",
         "appDescription_": "Informações para gestores e colaboradores integradas aos ERPs da Compusoftware",
-        "appVersionCode_": "0.9.0"
+        "appVersionCode_": "0.9.9"
       },
       "Windows8": {
         "platform_": "windows8",

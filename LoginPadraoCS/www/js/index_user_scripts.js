@@ -12,8 +12,15 @@
      ////// Saber de onde o usuário está acessando a tela de SOBRE do aplicativo.
      ////// POR ISSO NÃO INTRODUZA SUAS MÃOS AQUI!
      //////Obrigado Matheus Marques 14/06/2016.
-     var sobreOnde;
-    
+     
+     
+     /* UPDATE 16/06/16
+     Faça as coisas direito que não precisa de correção, animal.
+     Movido para Globals.js
+     Obrigado, Matheus Neves
+     */
+     
+
      // Funções que ocorrem ao abrir o app
      verificaConexao();
      definirTema();
@@ -75,13 +82,38 @@
          });
 
          push.on('notification', function(data) {
-             console.log(data.message);
-             alert(data.title+" Message: " +data.message);
-             // data.title,
-             // data.count,
-             // data.sound,
-             // data.image,
-             // data.additionalData
+             
+             if(data.title == ("Treinamento")){
+                 
+                 if (checaWS()){
+                    var values = {'acao':'treinamentos', 
+                                  'Login':localStorage.getItem("login"),
+                                  'Senha':localStorage.getItem("senha"),
+                                  'FlagSenha':flagSenha,
+                                  'idUsuario':localStorage.getItem("idUsuario")
+                                 };
+
+                    webService(values,'#retorno',treinamentos);
+                }
+                 
+             }else if(data.title == ("Vagas")){
+                 
+                if (checaWS()){
+                    var values = {'acao':'vagas', 
+                                  'Login':localStorage.getItem("login"),
+                                  'Senha':localStorage.getItem("senha"),
+                                  'FlagSenha':flagSenha
+                    };
+
+
+                    badgeNovasVagas(1);
+                    localStorage.setItem("cliqueVaga", 1);
+                    $(".badge-final").addClass("hidden");
+                    webService(values,'#retorno',listaVagas);
+                }
+                 
+             }
+             
          });
 
          push.on('error', function(e) {
@@ -411,8 +443,7 @@
         /* listitem  #lvItemTreinamentos */
     $(document).on("click", "#lvItemTreinamentos", function(evt)
     {
-         /*global activate_page */
-         activate_page("#treinamento");
+         perfilTreinamento($(this).data("codigo"));
 	});
     
     
@@ -450,16 +481,17 @@
         /* button  #btnSobreConfig */
     $(document).on("click", "#btnSobreConfig", function(evt)
     {
-         sobreOnde = "logado";
+         sobreSender = "logado";
          activate_page("#sobre");
+        
     });
     
         /* button  #btnVoltarSobre */
     $(document).on("click", "#btnVoltarSobre", function(evt)
     {
-         if(sobreOnde == "logado"){
+         if(sobreSender == "logado"){
              activate_page("#configGlobal");
-         }else if(sobreOnde == "semLogin"){
+         }else if(sobreSender == "semLogin"){
              activate_page("#configuracoes"); 
          }
     });
@@ -467,15 +499,17 @@
         /* button  #btnSobreConfiguracoes */
     $(document).on("click", "#btnSobreConfiguracoes", function(evt)
     {
-         sobreOnde = "semLogin";
+         sobreSender = "semLogin";
          activate_page("#sobre"); 
+    });
+     
+     $(document).on("click", "#btnEntendiMainPage", function(evt)
+    {
+         $(".uib_w_39").modal("toggle");
     });
     
     }       
-    
-        
-    
-    
+
     document.addEventListener("app.Ready", register_event_handlers, false);
         
 })();

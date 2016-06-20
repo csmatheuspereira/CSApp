@@ -1,57 +1,23 @@
 function login(json){
     
     if (json.result==true) {
-                               
-        dati.query("SELECT count(NOME) QTDE FROM tblUsers WHERE NOME='" + $("#txtNomeNovoUsuario").val() + "'", function(registros){
+        
+        strUsr = $("#txtNomeNovoUsuario").val();
+        strUsr = strUsr.toUpperCase();        
+        
+        dati.query("SELECT count(NOME) QTDE FROM tblUsers WHERE NOME='" + strUsr + "'", function(registros){
             conta=registros.rows.item(0).QTDE;
             
             if (conta <= 0) {
                 // Usuário não existe. Cadastra no BD local
-                var registro = { "NOME": $("#txtNomeNovoUsuario").val() }
+                var registro = { "NOME": strUsr }
 
                 dati.insert("tblUsers", registro, function(ID){
                     //navigator.notification.alert("Cadastrado");
                 });
             }
         });
-        
-            
-        /*
-        // Pega os textos do comboBox e coloca na array cmbUsuario
-        var cmbUsuario = $("#cmbUsuarioMainPage option").map(function() {
-                 return $(this).text();
-              }).get();
-        
-        
-        // Verifica se existe usuários já cadastrados
-        if (cmbUsuario.length > 0){
-            var final = (cmbUsuario.length - 1);
-        }else{
-            var final = 0;
-        }
-            
-        
-        // Verifica se já existe o usuário no combo
-        for (var i = 0; i <= final; i++){
-            if (cmbUsuario[i] == $("#txtNomeNovoUsuario").val())
-                {                                                            
-                    break;
-                    // Aqui o usuário já existe. Sai do for e chama a próxima tela
-                } else {
-                    // Usuário não existe. Cadastra no BD local
-                    var registro = { "NOME": $("#txtNomeNovoUsuario").val() }
-                    
-                    dati.insert("tblUsers", registro, function(ID){
-                        //navigator.notification.alert("Cadastrado");
-                    });
-                    
-                    break;
-                }
-        }
-        
-        */ //Antiga função de registrar usuário inexistente
-        
-        
+
         $("#txtSenhaNovoUsuario").val("");
         
         localStorage.setItem("idUsuario", json.ID);
@@ -64,6 +30,13 @@ function login(json){
         }
         
         localStorage.setItem('cliente', json.cliente);
+        
+        if(json.nomeUsuario != "err_no_name"){
+           //panielNome
+             $("#textoPainel").html("<center><h3 style='margin-bottom: -20px !important;'><strong>Bem-vindo</h3></strong><br /><h4>"+ json.nomeUsuario + "</h4></center>");
+        }else{
+            $("#textoPainel").html("<center><h3 style='margin-bottom: -20px !important;'><strong>Bem-vindo</strong></h3><br /></center>");
+        }
         
         badge(json.qtde, ".badVagas", localStorage.getItem("cliqueVaga"));
         selecionaLogo(localStorage.getItem('cliente'));

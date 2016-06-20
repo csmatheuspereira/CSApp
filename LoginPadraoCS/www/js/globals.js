@@ -2,6 +2,10 @@ var urlWS = "";
 var flagSenha = "N";
 var err_conn_unset = "Defina URL de acesso.";
 
+// Descobrir qual a origem do sobre
+var sobreSender;
+
+
 if (localStorage.getItem("verificaUrlOnline") === null) {
     localStorage.setItem("verificaUrlOnline", "S");
 }
@@ -60,7 +64,10 @@ function webService(values, status, callback){
                         sucesso = true;
                         
                         $("#loader").addClass("hidden");
-                        navigator.notification.alert("Ocorreu um erro desconhecido. Mensagem de erro: " + textStatus + ". Informe este erro ao suporte.", null,"Erro");       
+                        
+                        if (textStatus != "abort") {
+                            navigator.notification.alert("Ocorreu um erro desconhecido. Mensagem de erro: " + textStatus + ". Informe este erro ao suporte.", null,"Erro");       
+                        }
                     });                
     }    
 }
@@ -74,7 +81,7 @@ function checkOnline(url){
             if (resultado == undefined) {
                 $("#loader").addClass("hidden");
                 
-                navigator.notification.alert("A URL de Serviço não pode ser contactada, tente novamente mais tarde. Se o problema persistir entre em contato com o suporte.", null,"Erro");
+                navigator.notification.alert("A URL de Serviço não pôde ser contactada, tente novamente mais tarde. Se o problema persistir entre em contato com o suporte.", null,"Erro");
                 
                 http.abort();
                 
@@ -92,7 +99,7 @@ function checkOnline(url){
             return true;
         }else{
             $("#loader").addClass("hidden");
-            navigator.notification.alert("O endereço está fora do ar ou URL de acesso digitado incorretamente.", null,"Erro");            
+            navigator.notification.alert("A URL de Serviço não pôde ser contactada ou foi selecionada incorretamente.", null,"Erro");            
             activate_page("#configuracoes");
             return false;
         }
@@ -297,13 +304,13 @@ function sair(){
                 if (checaWS()) {
                     webService(values, "#retorno", logout);
                 } else {
-                    navigator.notification.alert("Defina a URL de serviço!", null, "Atenção");
+                    navigator.notification.alert(err_conn_unset, null, "Atenção");
                     activate_page("#configuracoes");
                 }                
             }            
         }, "Confirmação", ["Sim", "Não"]);                
     
-    } else if (window.location.hash == "#cargo" || window.location.hash == "#vagas" || window.location.hash == "#configGlobal" || window.location.hash == "#progressao" ){
+    } else if (window.location.hash == "#cargo" || window.location.hash == "#vagas" || window.location.hash == "#configGlobal" || window.location.hash == "#progressao" || window.location.hash == "#treinamentos" ){
         activate_page("#activitymain");
     
     } else if (window.location.hash == "#vaga"){
@@ -313,8 +320,19 @@ function sair(){
         activate_page("#configGlobal");
     
     } else if (window.location.hash == "#configuracoes" || window.location.hash == "#novousuario"){
-        activate_page("#mainpage");
-    } 
+        activate_page("#mainpage");    
+    
+    } else if (window.location.hash == "#sobre") {
+        
+        if(sobreSender == "logado"){
+         activate_page("#configGlobal");
+        }else if(sobreSender == "semLogin"){
+         activate_page("#configuracoes"); 
+        }
+        
+    } else if (window.location.hash == "#treinamento") {
+        activate_page("#treinamentos");    
+    }
     
     
 }
@@ -322,7 +340,7 @@ function sair(){
 function autoLogin(){
     if (localStorage.getItem("toggleManterConfigGlobal") == "true" &&
         localStorage.getItem("login") != null &&
-        localStorage.getItem("login") != null) {
+        localStorage.getItem("senha") != null) {
 
         var dispUUID = device.uuid;
         var dispNome = device.manufacturer +" "+ device.model;    

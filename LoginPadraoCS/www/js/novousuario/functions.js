@@ -1,13 +1,16 @@
 function login(json){
     
     if (json.result==true) {
-                               
-        dati.query("SELECT count(NOME) QTDE FROM tblUsers WHERE NOME='" + $("#txtNomeNovoUsuario").val() + "'", function(registros){
+        
+        strUsr = $("#txtNomeNovoUsuario").val();
+        strUsr = strUsr.toUpperCase();        
+        
+        dati.query("SELECT count(NOME) QTDE FROM tblUsers WHERE NOME='" + strUsr + "'", function(registros){
             conta=registros.rows.item(0).QTDE;
             
             if (conta <= 0) {
                 // Usuário não existe. Cadastra no BD local
-                var registro = { "NOME": $("#txtNomeNovoUsuario").val() }
+                var registro = { "NOME": strUsr }
 
                 dati.insert("tblUsers", registro, function(ID){
                     //navigator.notification.alert("Cadastrado");
@@ -30,9 +33,9 @@ function login(json){
         
         if(json.nomeUsuario != "err_no_name"){
            //panielNome
-            $("#textoPainel").html("Bem-vindo<br />"+titleize(json.nomeUsuario));
+             $("#textoPainel").html("<center><h3 style='margin-bottom: -20px !important;'><strong>Bem-vindo</h3></strong><br /><h4>"+ json.nomeUsuario + "</h4></center>");
         }else{
-            $("#textoPainel").html("Bem-vindo");
+            $("#textoPainel").html("<center><h3 style='margin-bottom: -20px !important;'><strong>Bem-vindo</strong></h3><br /></center>");
         }
         
         badge(json.qtde, ".badVagas", localStorage.getItem("cliqueVaga"));

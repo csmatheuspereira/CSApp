@@ -26,7 +26,6 @@ function loginMainPage(json){
                 if(buttonID == 1){
                     
                     var values = {'acao':'configuracoes','config':'autoLogout','Login':localStorage.getItem("login"),'Senha':localStorage.getItem("senha"),'FlagSenha':flagSenha,'dispUUID':device.uuid,'autoLogout':1};
-                   // dump(values);
                     webService(values, '#retorno', autoLogout);
                     
                     localStorage.setItem("toggleManterConfigGlobal", true);
@@ -56,7 +55,7 @@ function loginMainPage(json){
         
         if(json.nomeUsuario != "err_no_name"){
            //panielNome
-            $("#textoPainel").html("<center><h3 style='margin-bottom: -20px !important;'><strong>Bem-vindo</h3></strong><br /><h4>"+titleize(json.nomeUsuario) + "</h4></center>");
+            $("#textoPainel").html("<center><h3 style='margin-bottom: -20px !important;'><strong>Bem-vindo</h3></strong><br /><h4>"+json.nomeUsuario + "</h4></center>");
         }else{
             $("#textoPainel").html("<center><h3 style='margin-bottom: -20px !important;'><strong>Bem-vindo</strong></h3><br /></center>");
         }

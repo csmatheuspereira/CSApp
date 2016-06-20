@@ -4,6 +4,9 @@
     width: 100%;
     color: aliceblue;
     border-radius: 0px !important;
+     
+    margin-right: 0px !important;
+    margin-left: 0px !important;
 }
 .accordion-toggle:hover{
     width: 100%;
@@ -24,12 +27,14 @@
 .painel-proximo{
     padding-bottom: -25px !important;
     margin-top: 15px !important;
-
 }
 .panel-collapse{
     border-top-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
     margin-bottom: 0px;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+    width: 100% !important;
 }
 .panel-body{
     padding-left: 2px !important;

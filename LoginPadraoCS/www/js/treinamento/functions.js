@@ -28,7 +28,7 @@ function perfilTreinamento(id){
     if($("#lvItemTreinamentos[data-codigo='"+id+"']").data("custo") == 0){
         var custo = "Grátis";
     }else{
-        var custo = moeda($("#lvItemTreinamentos[data-codigo='"+id+"']").data("custo"))
+        var custo = "R$ "+moeda($("#lvItemTreinamentos[data-codigo='"+id+"']").data("custo"))
     }
     
     //perfilTreinamento tituloTreinamento

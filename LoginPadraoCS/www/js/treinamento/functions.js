@@ -1,10 +1,11 @@
 function treinamentos(json){
-    
+    $("#lvTreinamentos").html(" ");
+    var treinamento = "";
     if(json.treinamento != undefined){
         if(json.treinamento.length > 0){
             
             $("#lvTreinamentos").html(" ");
-            var treinamento = "";
+            
             for(var i=0; i < json.treinamento.length; i++){
                 
                 treinamento += "<a class='list-group-item allow-badge widget uib_w_103' data-uib='twitter%20bootstrap/list_item' data-ver='1' href='#treinamento' id='lvItemTreinamentos' data-codigo='"+json.treinamento[i].codTreinamento+"' data-titulo='"+json.treinamento[i].titulo+"' data-palestrante='"+json.treinamento[i].palestrante+"' data-descricao='"+json.treinamento[i].conteudo+"' data-inicio='"+json.treinamento[i].dataInicio+"' data-fim='"+json.treinamento[i].dataTermino+"' data-horaInicio='"+json.treinamento[i].horaInicio+"' data-horaFim='"+json.treinamento[i].horaFinal+"' data-intervalo='"+json.treinamento[i].intervalo+"' data-custo='"+json.treinamento[i].valorCurso+"' data-inscricoes='"+json.treinamento[i].fimInscricao+"' data-status='"+json.treinamento[i].status+"'><h4 class='list-group-item-heading'>"+json.treinamento[i].titulo+"</h4><p class='list-group-item-text text-listv'><strong>Palestrante: </strong>"+json.treinamento[i].palestrante+"</p><p class='list-group-item-text text-listv'><strong>Inicio: </strong> "+json.treinamento[i].dataInicio+"</p><p class='list-group-item-text text-listv'><strong>Inscrições até: </strong>"+json.treinamento[i].fimInscricao+"</p></a>";
@@ -12,15 +13,17 @@ function treinamentos(json){
             }
             $("#lvTreinamentos").append(treinamento);
             var treinamento = "";
-            activate_page("#treinamentos");
         }else{
-            navigator.notification.alert("Ocorreu um erro.", null, "Erro");
+             treinamento = "<div class='alert no_wrap widget uib_w_56 d-margins alert-warning' data-uib='twitter%20bootstrap/alert' data-ver='1'><i class='glyphicon glyphicon-warning-sign'></i> Nenhum treinamento disponível.</div>";
         }
 
     }else{
-        navigator.notification.alert("Ocorreu um erro.", null, "Erro");
+         treinamento = "<div class='alert no_wrap widget uib_w_56 d-margins alert-warning' data-uib='twitter%20bootstrap/alert' data-ver='1'><i class='glyphicon glyphicon-warning-sign'></i> Nenhum treinamento disponível.</div>";
+        //navigator.notification.alert("Ocorreu um erro.", null, "Erro");
     }
-    
+    $("#lvTreinamentos").append(treinamento);
+    treinamento = "";
+    activate_page("#treinamentos");
 }
 
 function perfilTreinamento(id){

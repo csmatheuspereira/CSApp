@@ -34,12 +34,15 @@ function progressao(json){
         
             for(var i=0; i < json.requisitoSuperior.length; i++){
 
+            
+            if (json.requisitoAtual != undefined) {
                 for(var j=0; j < json.requisitoAtual.length; j++){
                     if(json.requisitoAtual[j].codigo == json.requisitoSuperior[i].codigo){
                         igual = json.requisitoAtual[j].codigo;
                         break;
                     };
                 }
+            }
 
                 if(json.requisitoSuperior[i].codigo == igual){
                     requisitosSup += "<a class='list-group-item allow-badge widget uib_w_96 list-group-item-success' data-uib='twitter%20bootstrap/list_item' data-ver='1' href='#' id='lvItemCargoSuperior'><i class='glyphicon glyphicon-ok'></i> "+ json.requisitoSuperior[i].descricao +"</a>";                
